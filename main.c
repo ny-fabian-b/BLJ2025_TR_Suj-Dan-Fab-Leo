@@ -7,6 +7,7 @@
 #include "include/input.h"
 #include "include/config.h"
 #include "include/string.h"
+#include "include/design.h"
 
 int main(void) {
     char input[MAX_INPUT_SIZE];
@@ -15,6 +16,4 @@ int main(void) {
     Expression* expression;
     size_t expr_len = 0;
     parseExpression(&expression, &expr_len, input);
-
-    printf("%s\n", input);
 }

@@ -110,6 +110,9 @@ void parseSubExpression(size_t* i, char* expression, ExpressionType type, int* i
         case OPERATOR:
             parseOperator(i, expression, isEnd, next_type, out, len);
             break;
+        case BRACKET:
+            parseOperator(i, expression, isEnd, next_type, out, len);
+            break;
     }
 }
 
@@ -152,7 +155,41 @@ void parseNumber(size_t* i, char* expression, int* isEnd, ExpressionType* next_t
 }
 
 void parseSpecialFunc(size_t* i, char* expression, int* isEnd, ExpressionType* next_type, Expression* out, size_t len) {
+    size_t start = *i;
 
+    while (*i != len - 1 && guessType(expression[*i]) == SPECIAL_FUNC) {
+        (*i)++;
+    }
+    //end
+    if (*i == len - 1) {
+        *isEnd = 1;
+        *next_type = EXPR_NONE;
+    }
+    // next type
+    else {
+        char next_char = expression[*i];
+        if (isNumber(next_char)) {
+            *next_type = NUMBER;
+        }
+        else if (isBracket(next_char)) {
+            *next_type = BRACKET;
+        }
+        else if (isOperator(next_char)) {
+            *next_type = OPERATOR;
+        }
+    }
+    // out
+    size_t sf_len = *i - start;
+
+    char* sf_str = malloc(sizeof(char) * (sf + 1));
+    sf_str[sf_len] = '\0';
+    memcpy(sf_str, expression + start, sizeof(char) * sf_len);
+
+    double out_num = strtod(sf_str, NULL);
+
+    free(sf_str);
+
+    *out = createNumberExpression(out_num);
 }
 void parseOperator(size_t* i, char* expression, int* isEnd, ExpressionType* next_type, Expression* out, size_t len) {
     (*i)++; // len of operator is always 1
@@ -180,8 +217,39 @@ void parseOperator(size_t* i, char* expression, int* isEnd, ExpressionType* next
 
     *out = createOperatorExpression(out_op);
 }
-void parseBracket(size_t* i, char* expression, int* end, ExpressionType* next_type, Expression* parsed, size_t len) {
+void parseBracket(size_t* i, char* expression, int* isEnd, ExpressionType* next_type, Expression* out, size_t len) {
+    (*i)++; // len of bracket is always 1
+    //end
+    if (*i == len - 1) {
+        *isEnd = 1;
+        *next_type = EXPR_NONE;
+    }
+    // next type
+    else {
+        char next_char = expression[*i];
+        if (isNumber(next_char)) {
+            *next_type = NUMBER;
+        }
+        else if (isBracket(next_char)) {
+            *next_type = BRACKET;
+        }
+        else {
+            *next_type = SPECIAL_FUNC;
+        }
+    }
+    // out
+    char bracket_char = expression[*i - 1];
 
+    BracketType out_bracket = BRACKET_NONE;
+    if (bracket_char == '(') {
+        out_bracket = OPENING_BRACKET;
+    }
+    else if (bracket_char == ')') {
+        out_bracket = CLOSING_BRACKET;
+    }
+
+
+    *out = createBracketExpression(out_bracket);
 }
 
 void parseExpression(Expression** expressionptr, size_t* expression_len, char* input) {
