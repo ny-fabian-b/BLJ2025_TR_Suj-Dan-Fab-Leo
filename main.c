@@ -5,8 +5,11 @@
 #include "include/special_functions.h"
 #include "include/design.h"
 #include "include/input.h"
+#include "include/config.h"
 
 int main(void) {
-    printf("Hello, World!\n");
-    return 0;
+    char input[MAX_INPUT_SIZE];
+    getInput(input);
+
+    printf("%s\n", input);
 }
