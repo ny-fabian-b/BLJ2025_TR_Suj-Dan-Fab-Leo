@@ -5,18 +5,69 @@
 #ifndef TASCHENRECHNER_PARSER_H
 #define TASCHENRECHNER_PARSER_H
 
+#include "../include/config.h"
+#include "../include/string.h"
+
+#include <stddef.h>
+#include <string.h>
+#include <stdio.h>
+
+extern char* operators;
+
 typedef enum ExpressionType {
-    NUMBER,
-    SPECIAL_FUNC,
-    OPERATOR,
-    BRACKET
+    EXPR_NONE, //0
+    NUMBER, //1
+    SPECIAL_FUNC,//2
+    OPERATOR, //3
+    BRACKET //4
 } ExpressionType;
+
+typedef enum BracketType {
+    BRACKET_NONE,
+    OPENING_BRACKET,
+    CLOSING_BRACKET
+} BracketType;
+
 
 typedef struct Expression {
     ExpressionType type;
-    double* number;
+
+
+    double number;
+
+    char* specialFunc;
+
+    struct Expression* specialFuncExpression;
+
+    char operator;
+
+    BracketType bracketType;
 
 } Expression;
 
+int isNumber(char c);
+int isOperator(char c);
+int isBracket(char c);
+
+void parseExpression(Expression** expression, size_t* expression_len, char* input);
+
+void parseSubExpression(size_t* i, char* expression, ExpressionType type, int* end, ExpressionType* next_type, Expression* out, size_t len);
+
+void parseNumber(size_t* i, char* expression, int* isEnd, ExpressionType* next_type, Expression* out, size_t len);
+void parseSpecialFunc(size_t* i, char* expression, int* end, ExpressionType* next_type, Expression* out, size_t len);
+void parseOperator(size_t* i, char* expression, int* end, ExpressionType* next_type, Expression* parsed, size_t len);
+void parseBracket(size_t* i, char* expression, int* end, ExpressionType* next_type, Expression* parsed, size_t len);
+
+void initExpression(Expression* expr);
+Expression createNumberExpression(double number);
+Expression createOperatorExpression(char c);
+Expression createSpecialFuncExpression(char* special_func);
+Expression createBracketExpression(BracketType bracket_type);
+
+void printExpression(Expression* expr);
+void printExpressionType(ExpressionType type);
+void printBracketType(BracketType type);
+
+void initParser();
 
 #endif //TASCHENRECHNER_PARSER_H

@@ -10,4 +10,6 @@ add_executable(taschenrechner main.c
         src/parser.c
         src/functions.c
         src/special_functions.c
-        include/config.h)
+        include/config.h
+        include/string.c
+        include/string.h)
