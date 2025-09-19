@@ -1,0 +1,8 @@
+//
+// Created by sujan on 19.09.2025.
+//
+
+#ifndef TASCHENRECHNER_FUNKTION_H
+#define TASCHENRECHNER_FUNKTION_H
+
+#endif //TASCHENRECHNER_FUNKTION_H
