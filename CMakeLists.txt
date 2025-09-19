@@ -9,6 +9,4 @@ add_executable(taschenrechner main.c
         src/input.c
         src/parser.c
         src/functions.c
-        src/special_functions.c
-        "src/+ funktion.c"
-        "include/+ funktion.h")
+        src/special_functions.c)
