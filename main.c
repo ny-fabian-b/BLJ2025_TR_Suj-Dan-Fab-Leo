@@ -12,10 +12,14 @@
 #include "include/functions.h"
 
 int main(void) {
-    char input[MAX_INPUT_SIZE];
-    getInput(input);
+    ka();
 
-    double r = evaluateExpression(input, strlen(input));
+    while (1) {
+        char input[MAX_INPUT_SIZE];
+        getInput(input);
 
-    printf("%f\n", r);
+        double r = evaluateExpression(input, strlen(input));
+
+        printf("result: %f\n", r);
+    }
 }

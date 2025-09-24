@@ -9,5 +9,8 @@
 #include <stddef.h>
 
 size_t find_closing_bracket(const char* str, size_t opening_pos);
+size_t find_closing_bracket_expr(Expression* expr, size_t expr_len, size_t opening_pos);
+
+
 
 #endif //TASCHENRECHNER_BRACKET_PARSER_H

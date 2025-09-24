@@ -280,6 +280,9 @@ void parseBracket(size_t* i, char* expression, int* isEnd, ExpressionType* next_
         else if (isBracket(next_char)) {
             *next_type = BRACKET;
         }
+        else if (isOperator(next_char)) {
+            *next_type = OPERATOR;
+        }
         else {
             *next_type = SPECIAL_FUNC;
         }
@@ -329,8 +332,6 @@ void parseExpression(Expression** expressionarr, size_t* size, char* input, size
     }
 
     printExpressionArr(*expressionarr, *size);
-
-    evaluate_simple_functions(expressionarr, size);
 }
 
 void printExpressionArr(Expression* arr, size_t size) {

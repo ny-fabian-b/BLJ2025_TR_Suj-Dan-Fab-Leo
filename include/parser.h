@@ -8,6 +8,6 @@
 #include "sub_expression_parser.h"
 
 double evaluateExpression(char* expr, size_t len);
-
+double evaluateParsedExpression(Expression** expr, size_t* expr_len);
 
 #endif
