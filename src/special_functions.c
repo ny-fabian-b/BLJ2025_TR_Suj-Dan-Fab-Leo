@@ -4,16 +4,32 @@
 
 #include "../include/special_functions.h"
 
+SFFunc sffuncs[N_SF_FUNCS] = {
+    {calcsin, "sin"},
+    {calccos, "cos"}
+};
+
+SFConstant sfconstants[N_SF_CONSTANTS] = {
+    {3.14159265358, "pi"},
+    {2.71, "e"}
+};
+
 double evaluateSFConstant(char* sf_string) {
-    if (strcmp(sf_string, "pi") == 0) {
-        return 3.14;
+    for (size_t i = 0; i < N_SF_CONSTANTS; i++) {
+        SFConstant sfc = sfconstants[i];
+        if (strcmp(sfc.name, sf_string) == 0) {
+            return sfc.value;
+        }
     }
     return 0;
 }
 
 double evaluateSFFunc(char* sf_string, double* args) {
-    if (strcmp(sf_string, "sin") == 0) {
-        return args[0] * 3;
+    for (size_t i = 0; i < N_SF_FUNCS; i++) {
+        SFFunc sff = sffuncs[i];
+        if (strcmp(sff.name, sf_string) == 0) {
+            return sff.func(args);
+        }
     }
     return 0;
 }
@@ -35,4 +51,20 @@ void evaluateSpecialFunctions(Expression** expr_arr, size_t expr_len) {
             (*expr_arr)[i] = createNumberExpression(evaluateSpecialFunc(expr));
         }
     }
+}
+
+
+// special functions
+
+
+double calcsin(double* args) {
+    double x = args[0];
+
+    return x + 3;
+}
+
+double calccos(double* args) {
+    double x = args[0];
+
+    return x + 2;
 }
