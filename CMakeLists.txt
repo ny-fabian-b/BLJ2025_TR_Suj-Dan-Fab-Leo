@@ -20,4 +20,6 @@ add_executable(taschenrechner main.c
         src/arg_parser.c
         include/arg_parser.h
         src/simple_functions.c
-        include/simple_functions.h)
+        include/simple_functions.h
+        src/rps_game.c
+        include/rps_game.h)
