@@ -19,6 +19,7 @@ double evaluateSpecialFunc(Expression special_func);
 
 double calcsin(double* args);
 double calccos(double* args);
+double factorial(double* args);
 
 typedef struct SFFunc {
     double (*func)(double*);
@@ -30,7 +31,7 @@ typedef struct SFConstant {
     char* name;
 } SFConstant;
 
-#define N_SF_FUNCS 2
+#define N_SF_FUNCS 3
 #define N_SF_CONSTANTS 2
 
 extern SFFunc sffuncs[];

@@ -6,7 +6,8 @@
 
 SFFunc sffuncs[N_SF_FUNCS] = {
     {calcsin, "sin"},
-    {calccos, "cos"}
+    {calccos, "cos"},
+    {factorial, "fact"}
 };
 
 SFConstant sfconstants[N_SF_CONSTANTS] = {
@@ -74,7 +75,7 @@ double factorial(double* args) {
 
     size_t result = 1;
 
-    for (size_t i = 1; i < x; i++) {
+    for (size_t i = 1; i <= x; i++) {
         result *= i;
     }
 
