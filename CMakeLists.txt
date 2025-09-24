@@ -7,9 +7,15 @@ add_executable(taschenrechner main.c
         main.c
         src/design.c
         src/input.c
-        src/parser.c
+        src/sub_expression_parser.c
         src/functions.c
         src/special_functions.c
         include/config.h
-        include/string.c
-        include/string.h)
+        src/string.c
+        include/string.h
+        src/parser.c
+        include/parser.h
+        src/bracket_parser.c
+        include/bracket_parser.h
+        src/arg_parser.c
+        include/arg_parser.h)
