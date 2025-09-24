@@ -254,6 +254,9 @@ void parseOperator(size_t* i, char* expression, int* isEnd, ExpressionType* next
         else if (isBracket(next_char)) {
             *next_type = BRACKET;
         }
+        else if (isOperator(next_char)) {
+            *next_type = OPERATOR;
+        }
         else {
             *next_type = SPECIAL_FUNC;
         }

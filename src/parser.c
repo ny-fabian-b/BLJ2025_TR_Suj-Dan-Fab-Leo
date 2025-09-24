@@ -9,6 +9,7 @@
 #include "../include/bracket_parser.h"
 #include "../include/simple_functions.h"
 #include "../include/special_functions.h"
+#include "../include/parse_negatives.h"
 
 double evaluateExpression(char* expr, size_t len) {
     Expression* expr_arr = NULL;
@@ -57,12 +58,11 @@ double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
                 free(*expr_arr);
                 *expr_arr = new_expr_arr;
                 *expr_len = new_expr_len;
-
-                printf("sudhsudhusudhuh\n");
             }
         }
     }
     evaluateSpecialFunctions(expr_arr, *expr_len);
+    parseNegatives(expr_arr, expr_len);
     evaluate_simple_functions(expr_arr, expr_len);
 
     return (*expr_arr)[0].number;

@@ -61,23 +61,76 @@ void evaluateSpecialFunctions(Expression** expr_arr, size_t expr_len) {
 double calcsin(double* args) {
     double x = args[0];
 
-    return x + 3;
+    // modulo
+    while (x > PI) {
+        x -= 2 * PI;
+    }
+    while (x < -PI) {
+        x += 2 * PI;
+    }
+    printf("%f\n", x);
+
+    double term = x;
+    double result = x;
+
+    // iterate taylor series
+    for (size_t i = 0; i < 50; i++) {
+        term *= -(x * x) / ((2 * i + 2) * (2 * i + 3));
+        result += term;
+
+        if (term > -TRIG_TOLERANCE && term < TRIG_TOLERANCE) {
+            break;
+        }
+    }
+
+    return result;
+}
+
+size_t calcpow(size_t base, size_t exp) {
+    for (size_t i = 1; i < exp; i++) {
+        base *= base;
+    }
+    return base;
 }
 
 double calccos(double* args) {
     double x = args[0];
 
-    return x + 2;
+    // modulo
+    while (x > PI) {
+        x -= 2 * PI;
+    }
+    while (x < -PI) {
+        x += 2 * PI;
+    }
+    double term = 1.0;
+    double result = 1.0;
+
+    // iterate taylor series
+    for (size_t i = 0; i < 50; i++) {
+        term *= -(x * x) / ((2 * i + 1) * (2 * i + 2));
+        result += term;
+
+        if (term > -TRIG_TOLERANCE && term < TRIG_TOLERANCE) {
+            break;
+        }
+    }
+
+    return result;
 }
 
-double factorial(double* args) {
-    size_t x = (size_t) args[0];
-
+size_t z_factorial(size_t x) {
     size_t result = 1;
 
     for (size_t i = 1; i <= x; i++) {
         result *= i;
     }
 
-    return (double) result;
+    return result;
+}
+
+double factorial(double* args) {
+    size_t x = (size_t) args[0];
+
+    return (double) z_factorial(x);
 }

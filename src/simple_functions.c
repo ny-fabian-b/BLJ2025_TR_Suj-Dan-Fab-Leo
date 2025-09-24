@@ -8,14 +8,17 @@
 
 #include "../include/sub_expression_parser.h"
 
-size_t find_operator(char op, Expression**expression, size_t len) {
-    for (size_t i = 0; i < len; i++) {
-        if ((*expression)[i].type == OPERATOR) {
-            if ((*expression)[i].operator == op) {
-                return i;
+size_t find_operator(char op, Expression**expression, size_t len, int reverse) {
+    if (reverse) {
+        for (size_t i = 0; i < len; i++) {
+            if ((*expression)[i].type == OPERATOR) {
+                if ((*expression)[i].operator == op) {
+                    return i;
+                }
             }
         }
     }
+
     return SIZE_MAX;
 }
 
@@ -59,8 +62,13 @@ void put_result_at(size_t i, double result, size_t* len, Expression** expression
 
 
 void evaluate_simple_functions(Expression**expression, size_t* len) {
-    //mult, div
     size_t i = 0;
+    //exp
+    while (1) {
+        size_t exp = find_operator(i, expression, len);
+    }
+
+    //mult, div
     while (1) {
         size_t mult = find_operator('*',expression,*len);
         size_t div = find_operator('/',expression,*len);
