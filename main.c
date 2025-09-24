@@ -9,7 +9,7 @@
 #include "include/string.h"
 #include "include/design.h"
 #include "include/parser.h"
-
+#include "include/functions.h"
 int main(void) {
     char input[MAX_INPUT_SIZE];
     getInput(input);

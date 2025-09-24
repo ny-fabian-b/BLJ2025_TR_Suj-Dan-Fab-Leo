@@ -18,4 +18,6 @@ add_executable(taschenrechner main.c
         src/bracket_parser.c
         include/bracket_parser.h
         src/arg_parser.c
-        include/arg_parser.h)
+        include/arg_parser.h
+        src/simple_functions.c
+        src/simple_functions.h)
