@@ -1,8 +1,13 @@
 //
-// Created by fabia on 22.09.2025.
+// Created by sujan on 24.09.2025.
 //
 
 #ifndef TASCHENRECHNER_PARSER_H
 #define TASCHENRECHNER_PARSER_H
 
-#endif //TASCHENRECHNER_PARSER_H
+#include "sub_expression_parser.h"
+
+double evaluateExpression(char* expr, size_t len);
+double evaluateParsedExpression(Expression** expr, size_t* expr_len);
+
+#endif

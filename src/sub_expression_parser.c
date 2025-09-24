@@ -3,6 +3,7 @@
 //
 
 #include "../include/sub_expression_parser.h"
+#include "../include/simple_functions.h"
 
 #include "../include/bracket_parser.h"
 #include "../include/arg_parser.h"
@@ -69,7 +70,7 @@ Expression createSpecialFuncExpression(char* special_func) {
 Expression createBracketExpression(BracketType bracket_type) {
     Expression expr;
     initExpression(&expr);
-    expr.type = SPECIAL_FUNC;
+    expr.type = BRACKET;
     expr.bracketType = bracket_type;
     return expr;
 }
@@ -79,7 +80,7 @@ void printExpression(Expression* expr) {
         case NUMBER:
             printf("NUMBER: %f\n", expr->number); break;
         case BRACKET:
-            printf("BRACKET: %s\n", expr->special_func_string); break;
+            printf("BRACKET: %d\n", expr->bracketType); break;
         case OPERATOR:
             printf("OPERATOR: %c\n", expr->operator); break;
         case SPECIAL_FUNC:
@@ -93,9 +94,12 @@ void printExpression(Expression* expr) {
                 printf("CONSTANT");
             }
             printf("\n");
+            break;
 
         case EXPR_NONE:
             printf("EXPR_NONE\n"); break;
+        default:
+            printf("???????\n");
     }
 }
 
@@ -124,7 +128,7 @@ void parseSubExpression(size_t* i, char* expression, ExpressionType type, int* i
             parseOperator(i, expression, isEnd, next_type, out, len);
             break;
         case BRACKET:
-            parseOperator(i, expression, isEnd, next_type, out, len);
+            parseBracket(i, expression, isEnd, next_type, out, len);
             break;
         case SPECIAL_FUNC:
             parseSpecialFunc(i, expression, isEnd, next_type, out, len);
@@ -276,6 +280,9 @@ void parseBracket(size_t* i, char* expression, int* isEnd, ExpressionType* next_
         else if (isBracket(next_char)) {
             *next_type = BRACKET;
         }
+        else if (isOperator(next_char)) {
+            *next_type = OPERATOR;
+        }
         else {
             *next_type = SPECIAL_FUNC;
         }
@@ -295,8 +302,7 @@ void parseBracket(size_t* i, char* expression, int* isEnd, ExpressionType* next_
     *out = createBracketExpression(out_bracket);
 }
 
-void parseExpression(Expression** expressionarr, size_t* expression_len, char* input) {
-    size_t input_len = strlen(input);
+void parseExpression(Expression** expressionarr, size_t* size, char* input, size_t input_len) {
 
     //Expression* expression = *expressionptr;
     //expression = nullptr;
@@ -305,8 +311,6 @@ void parseExpression(Expression** expressionarr, size_t* expression_len, char* i
     int end = 0;
     ExpressionType type = guessType(input[0]);
     ExpressionType nextType;
-
-    size_t size = 0;
 
     while (!end) {
         Expression cexpr;
@@ -318,16 +322,16 @@ void parseExpression(Expression** expressionarr, size_t* expression_len, char* i
         printf("%llu, %d, %d, %dgg\n", i, type, end, nextType);
         type = nextType;
 
-        Expression* new_expression = malloc(sizeof(Expression) * (size + 1));
-        memcpy(new_expression, *expressionarr, sizeof(Expression) * size);
-        new_expression[size] = cexpr;
+        Expression* new_expression = malloc(sizeof(Expression) * (*size + 1));
+        memcpy(new_expression, *expressionarr, sizeof(Expression) * *size);
+        new_expression[*size] = cexpr;
         free(*expressionarr);
         *expressionarr = new_expression;
 
-        size++;
+        (*size)++;
     }
 
-    printExpressionArr(*expressionarr, size);
+    printExpressionArr(*expressionarr, *size);
 }
 
 void printExpressionArr(Expression* arr, size_t size) {

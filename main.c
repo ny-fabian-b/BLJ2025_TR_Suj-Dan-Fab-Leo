@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#include "include/parser.h"
 #include "include/functions.h"
 #include "include/sub_expression_parser.h"
 #include "include/special_functions.h"
@@ -8,19 +9,21 @@
 #include "include/config.h"
 #include "include/string.h"
 #include "include/design.h"
-#include "include/parser.h"
 #include "include/functions.h"
-#include "include/rps_game.h"
-
 
 int main(void) {
+    ka();
 
-    ka2();
+    double rr[] = {5};
 
-    char input[MAX_INPUT_SIZE];
-    getInput(input);
+    printf("%f", factorial(rr));
 
-    Expression* expressionarr = NULL;
-    size_t expr_len = 0;
-    parseExpression(&expressionarr, &expr_len, input);
+    while (1) {
+        char input[MAX_INPUT_SIZE];
+        getInput(input);
+
+        double r = evaluateExpression(input, strlen(input));
+
+        printf("result: %f\n", r);
+    }
 }

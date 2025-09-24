@@ -2,8 +2,8 @@
 // Created by fabia on 19.09.2025.
 //
 
-#ifndef TASCHENRECHNER_PARSER_H
-#define TASCHENRECHNER_PARSER_H
+#ifndef TASCHENRECHNER_SUB_EXPRESSION_PARSER_H
+#define TASCHENRECHNER_SUB_EXPRESSION_PARSER_H
 
 #include "../include/config.h"
 #include "../include/string.h"
@@ -56,7 +56,7 @@ int isNumber(char c);
 int isOperator(char c);
 int isBracket(char c);
 
-void parseExpression(Expression** expression, size_t* expression_len, char* input);
+void parseExpression(Expression** expressionarr, size_t* size, char* input, size_t input_len) ;
 
 void parseSubExpression(size_t* i, char* expression, ExpressionType type, int* end, ExpressionType* next_type, Expression* out, size_t len);
 

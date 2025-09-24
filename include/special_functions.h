@@ -5,4 +5,10 @@
 #ifndef TASCHENRECHNER_SPECIAL_FUNCTIONS_H
 #define TASCHENRECHNER_SPECIAL_FUNCTIONS_H
 
+#include "sub_expression_parser.h"
+
+double factorial(double* args);
+
+void evaluateSpecialFunctions(Expression** expr_arr, size_t expr_len);
+
 #endif //TASCHENRECHNER_SPECIAL_FUNCTIONS_H

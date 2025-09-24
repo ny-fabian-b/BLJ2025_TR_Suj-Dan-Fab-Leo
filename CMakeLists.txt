@@ -13,13 +13,12 @@ add_executable(taschenrechner main.c
         include/config.h
         src/string.c
         include/string.h
-        src/parser.c
-        include/parser.h
         src/bracket_parser.c
         include/bracket_parser.h
         src/arg_parser.c
         include/arg_parser.h
         src/simple_functions.c
         include/simple_functions.h
-        src/rps_game.c
-        include/rps_game.h)
+        src/parser.c
+        include/parser.h
+        src/rps_game.c)
