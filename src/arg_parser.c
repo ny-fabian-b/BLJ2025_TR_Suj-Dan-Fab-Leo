@@ -5,6 +5,8 @@
 
 #include <stdlib.h>
 
+#include "../include/parser.h"
+
 void parseArgs(char *start, size_t len, double** out, size_t* n_args) {
     // split by ,
     size_t arg_start = 0;
@@ -20,10 +22,15 @@ void parseArgs(char *start, size_t len, double** out, size_t* n_args) {
             memcpy(new_args, *out, *n_args * sizeof(double));
 
             // add new expression
-            size_t arg_len = i - arg_start;
-            //...
+            size_t arg_len = i - arg_start + 1;
+            char* arg_str = malloc(arg_len * sizeof(char));
+            memcpy(arg_str, &start[arg_start], arg_len * sizeof(char));
 
-            double argn = 23;
+            double argn = evaluateExpression(arg_str, arg_len + 1);
+            //printf("%f %s\n", len, arg_str);
+
+            free(arg_str);
+
             new_args[*n_args] = argn;
 
             free(*out);
@@ -34,6 +41,8 @@ void parseArgs(char *start, size_t len, double** out, size_t* n_args) {
 
 
             (*n_args)++;
+
+            arg_start = i + 1;
         }
     }
 }

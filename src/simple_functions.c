@@ -3,6 +3,9 @@
 //
 
 #include "../include/simple_functions.h"
+
+#include <stdlib.h>
+
 #include "../include/sub_expression_parser.h"
 
 size_t find_operator(char op, Expression**expression, size_t len) {
@@ -33,9 +36,27 @@ double evaluate_operator_at(size_t i, Expression** expression) {
     }
 }
 
-void put_result_at(size_t size, double result, size_t * len, Expression ** expression) {
+void put_result_at(size_t i, double result, size_t* len, Expression** expression) {
+    //.....1+1..... -> ....2.....
+    *len -= 2;
+    Expression* new_expression = malloc(*len * sizeof(Expression));
 
+    memcpy(new_expression, *expression, (i - 1) * sizeof(Expression));
+    memcpy(&new_expression[i], &(*expression)[i + 2], (*len - i) * sizeof(Expression));
+    //1*2*3 -> 2 3 2 3
+    //1*2*3 -< 2*3
+
+    free(*expression);
+
+    *expression = new_expression;
+
+    (*expression)[i - 1] = createNumberExpression(result);
+
+    printf("%d %d %d %d\n\n", *len, *len - i, i - 1, i);
+    printExpressionArr(*expression, *len);
+    printf("\n");
 }
+
 
 void evaluate_simple_functions(Expression**expression, size_t* len) {
     //mult, div
