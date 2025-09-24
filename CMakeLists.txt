@@ -20,4 +20,4 @@ add_executable(taschenrechner main.c
         src/arg_parser.c
         include/arg_parser.h
         src/simple_functions.c
-        src/simple_functions.h)
+        include/simple_functions.h)
