@@ -68,3 +68,15 @@ double calccos(double* args) {
 
     return x + 2;
 }
+
+double factorial(double* args) {
+    size_t x = (size_t) args[0];
+
+    size_t result = 1;
+
+    for (size_t i = 1; i < x; i++) {
+        result *= i;
+    }
+
+    return (double) result;
+}
