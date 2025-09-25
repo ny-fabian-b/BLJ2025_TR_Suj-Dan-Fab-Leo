@@ -6,8 +6,12 @@
 
 #include <stdio.h>
 
+#include "../include/colors.h"
+
 void getInput(char* s) {
-    printf("Enter expression to evaluate: \n");
+    fflush(stdin);
+    printf("%sEnter expression to evaluate: \n", C_GREEN);
+    printf("%s", C_BRIGHT_WHITE);
     fgets(s, MAX_INPUT_SIZE, stdin);
 }
 

@@ -16,7 +16,7 @@ void evaluateFactorials(Expression** expr_arr, size_t* len) {
         if (expr.type == SPECIAL_FUNC && expr.special_func_type == SF_CONSTANT && p_expr_type == NUMBER) {
             if (strcmp(expr.special_func_string, "!") == 0) {
                 // evaluate factorial
-                double result = (double) z_factorial((size_t) (*expr_arr)[i - 1].number);
+                double result = (double) factorial((size_t) (*expr_arr)[i - 1].number);
                 (*expr_arr)[i - 1] = createNumberExpression(result);
 
                 // remove factorial SF

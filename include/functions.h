@@ -1,8 +1,0 @@
-//
-// Created by fabia on 19.09.2025.
-//
-
-#ifndef TASCHENRECHNER_FUNCTIONS_H
-#define TASCHENRECHNER_FUNCTIONS_H
-
-#endif //TASCHENRECHNER_FUNCTIONS_H

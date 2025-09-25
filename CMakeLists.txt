@@ -8,11 +8,8 @@ add_executable(taschenrechner main.c
         src/design.c
         src/input.c
         src/sub_expression_parser.c
-        src/functions.c
         src/special_functions.c
         include/config.h
-        src/string.c
-        include/string.h
         src/bracket_parser.c
         include/bracket_parser.h
         src/arg_parser.c
@@ -27,5 +24,6 @@ add_executable(taschenrechner main.c
         src/parse_factorial.c
         include/parse_factorial.h
         src/life_calculator.c
-        "src/Multiply and divide.c"
-        include/life_calculator.h)
+        include/life_calculator.h
+        src/macros.c
+        include/macros.h)

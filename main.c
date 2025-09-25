@@ -1,30 +1,32 @@
 #include <stdio.h>
 
+#include "include/colors.h"
 #include "include/parser.h"
-#include "include/functions.h"
 #include "include/sub_expression_parser.h"
 #include "include/special_functions.h"
 #include "include/design.h"
 #include "include/input.h"
 #include "include/config.h"
-#include "include/string.h"
 #include "include/design.h"
-#include "include/functions.h"
-#include "include/rps_game.h"
+#include "include/macros.h"
 
 int main(void) {
-    ka2();
+    ka();
 
-    double rr[] = {5};
-
-    printf("%f", factorial(rr));
+    printf("%swelcome to Taschenrechner! enter 'help' for a guide\n", C_CYAN);
 
     while (1) {
         char input[MAX_INPUT_SIZE];
         getInput(input);
 
+        if (executeMacros(input)) {
+            continue;
+        }
+
+        printf("%s", C_GREY);
+
         double r = evaluateExpression(input, strlen(input));
 
-        printf("result: %f\n", r);
+        printf("%s\nresult: %f\n", C_CYAN, r);
     }
 }

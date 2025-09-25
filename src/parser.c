@@ -16,6 +16,18 @@ double evaluateExpression(char* expr, size_t len) {
     Expression* expr_arr = NULL;
     size_t expr_len  = 0;
 
+    // remove spaces from string
+    for (size_t i = 0; i < len; i++) { // foreach char
+        if (expr[i] == ' ') {
+            for (size_t j = i + 1; j < len; j++) { //foreach char after the space
+                expr[j - 1] = expr[j]; // move char left
+            }
+            len--;
+        }
+    }
+
+    expr[len] = '\0';
+
     parseExpression(&expr_arr, &expr_len, expr, len);
 
     return evaluateParsedExpression(&expr_arr, &expr_len);
@@ -35,16 +47,17 @@ double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
                 Expression* subexpr_arr = malloc(subexpr_len * sizeof(Expression));
                 memcpy(subexpr_arr, &(*expr_arr)[i + 1], subexpr_len * sizeof(Expression));
 
-                printExpressionArr(subexpr_arr, subexpr_len);
+                //printExpressionArr(subexpr_arr, subexpr_len);
 
                 double result = evaluateParsedExpression(&subexpr_arr, &subexpr_len);
+                printf("\n");
                 //double result = 100.0;
 
                 free(subexpr_arr);
 
                 // put result in
-                // 1+(1+2+3)+2+4
-                //1+ 6 +2+4
+                // 1+(1+2+3)+2+4 ->
+                // 1+ 6 +2+4
 
                 size_t new_expr_len = *expr_len - starting_subexpr_len - 1;
                 Expression* new_expr_arr = malloc(new_expr_len * sizeof(Expression));
@@ -53,8 +66,6 @@ double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
                 memcpy(&new_expr_arr[i + 1], &(*expr_arr)[closing_pos], (*expr_len - closing_pos) * sizeof(Expression));
 
                 new_expr_arr[i] = createNumberExpression(result);
-
-                printExpressionArr(new_expr_arr, new_expr_len);
 
                 free(*expr_arr);
                 *expr_arr = new_expr_arr;
