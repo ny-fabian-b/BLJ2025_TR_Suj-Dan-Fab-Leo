@@ -41,14 +41,21 @@ int AlcPromilleCalculator() {  //rechnet aus wie viel prozent Alkohol man im Blu
     char geschlecht;
 
 
-    printf("Please enter the amount of alcohol you drank in g: ");
-    scanf("%f", &alkohol);
+    printf("Please enter the amount of alcohol you drank in g (One cup has about 10g): ");
+    if (scanf("%f", &alkohol)!=1) {
+        printf("Invalid input");
+        return 1;
+    }
+
 
     printf("Please enter your bodyweight in Kg: ");
-    scanf("%f", &koerpergewicht );
+    if (scanf("%f", &koerpergewicht)!=1) {
+        printf("Invalid input");
+        return 1;
+    }
 
     printf("Please enter your gender: ");
-    scanf("%c", &geschlecht);
+    scanf(" %c", &geschlecht);
     if (geschlecht == 'm'|| geschlecht == 'M') {
         reduktionsfaktor = 0.7;
     }else if (geschlecht == 'f'|| geschlecht == 'F') {
