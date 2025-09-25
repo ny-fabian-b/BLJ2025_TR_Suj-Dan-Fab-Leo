@@ -16,7 +16,7 @@ void parseArgs(char *start, size_t len, double** out, size_t* n_args) {
 
     for (size_t i = 0; i < len; i++) {
         char c = start[i];
-        if (c == ',' || i == len - 1) {
+        if (c == ',' || (i == len - 1 && i - arg_start != 0)) {
             // add new expression
             size_t arg_len = i - arg_start + 1;
 

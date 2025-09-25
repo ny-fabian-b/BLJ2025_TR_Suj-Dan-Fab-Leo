@@ -8,6 +8,7 @@
 
 #define MAX_INPUT_SIZE 200
 #define TOLERANCE 1e-20
+#define SQRT_TOLERANCE 1e-10
 #define OPERATORS "+-/*^%"
 
 #endif //TASCHENRECHNER_CONFIG_H

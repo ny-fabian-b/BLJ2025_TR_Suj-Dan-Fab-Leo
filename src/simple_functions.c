@@ -6,6 +6,7 @@
 
 #include <stdlib.h>
 
+#include "../include/colors.h"
 #include "../include/sub_expression_parser.h"
 #include "../include/special_functions.h"
 
@@ -26,6 +27,11 @@ size_t find_operator(char op, Expression**expression, size_t len, int reverse) {
 
 double evaluate_operator_at(size_t i, Expression** expression) {
     char op = (*expression)[i].operator;
+
+    if ((*expression)[i - 1].type != NUMBER || (*expression)[i + 1].type != NUMBER) {
+        printf("%sInvalid Operands\n%s", C_RED, C_RESET);
+        return NAN;
+    }
     double n1 = (*expression)[i - 1].number;
     double n2 = (*expression)[i + 1].number;
 
