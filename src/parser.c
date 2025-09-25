@@ -37,14 +37,15 @@ double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
 
                 printExpressionArr(subexpr_arr, subexpr_len);
 
+                printf("\n");
                 double result = evaluateParsedExpression(&subexpr_arr, &subexpr_len);
                 //double result = 100.0;
 
                 free(subexpr_arr);
 
                 // put result in
-                // 1+(1+2+3)+2+4
-                //1+ 6 +2+4
+                // 1+(1+2+3)+2+4 ->
+                // 1+ 6 +2+4
 
                 size_t new_expr_len = *expr_len - starting_subexpr_len - 1;
                 Expression* new_expr_arr = malloc(new_expr_len * sizeof(Expression));
@@ -53,8 +54,6 @@ double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
                 memcpy(&new_expr_arr[i + 1], &(*expr_arr)[closing_pos], (*expr_len - closing_pos) * sizeof(Expression));
 
                 new_expr_arr[i] = createNumberExpression(result);
-
-                printExpressionArr(new_expr_arr, new_expr_len);
 
                 free(*expr_arr);
                 *expr_arr = new_expr_arr;

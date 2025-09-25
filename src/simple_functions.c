@@ -59,9 +59,7 @@ void put_result_at(size_t i, double result, size_t* len, Expression** expression
 
     (*expression)[i - 1] = createNumberExpression(result);
 
-    printf("%d %d %d %d\n\n", *len, *len - i, i - 1, i);
     printExpressionArr(*expression, *len);
-    printf("\n");
 }
 
 

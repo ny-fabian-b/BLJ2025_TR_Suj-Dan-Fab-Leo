@@ -52,6 +52,7 @@ typedef struct Expression {
 
 } Expression;
 
+size_t strFind(const char* str, char target);
 int isNumber(char c);
 int isOperator(char c);
 int isBracket(char c);

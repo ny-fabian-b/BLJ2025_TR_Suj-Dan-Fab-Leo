@@ -7,6 +7,7 @@
 #include <stdio.h>
 
 void getInput(char* s) {
+    fflush(stdin);
     printf("Enter expression to evaluate: \n");
     fgets(s, MAX_INPUT_SIZE, stdin);
 }

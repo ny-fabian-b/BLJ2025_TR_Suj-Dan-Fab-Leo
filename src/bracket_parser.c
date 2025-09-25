@@ -4,6 +4,8 @@
 
 #include "../include/bracket_parser.h"
 
+#include <stdint.h>
+
 size_t find_closing_bracket(const char* str, size_t opening_pos) {
     size_t len = strlen(str);
 
