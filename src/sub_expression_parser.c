@@ -193,7 +193,7 @@ void parseSpecialFunc(size_t* i, char* expression, int* isEnd, ExpressionType* n
     size_t start = *i;
 
     // go to end of sf string
-    while (*i != len - 1 && guessType(expression[*i]) == SPECIAL_FUNC) {
+    while (*i != len - 1 && !isOperator(expression[*i]) && expression[*i] != '(') {
         (*i)++;
     }
     Expression sf_out;
@@ -226,7 +226,7 @@ void parseSpecialFunc(size_t* i, char* expression, int* isEnd, ExpressionType* n
         // go to end of bracket
         size_t bracket_end = find_closing_bracket(expression, *i);
         // parse args
-        parseArgs(&expression[*i] + 1, bracket_end - *i - 2, &sf_out.special_func_args, &sf_out.special_func_n_args);
+        parseArgs(&expression[*i + 1], bracket_end - *i - 1, &sf_out.special_func_args, &sf_out.special_func_n_args);
 
         *i = bracket_end;
     }

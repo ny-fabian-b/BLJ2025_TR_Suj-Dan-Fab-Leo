@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 
-void ka2() {
+void rpsGame() {
     char input[100];
     printf("Type rock, paper or scissors\n");
     scanf("%s", input);

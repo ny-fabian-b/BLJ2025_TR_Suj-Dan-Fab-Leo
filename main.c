@@ -13,7 +13,7 @@
 int main(void) {
     ka();
 
-    printf("%swelcome to Taschenrechner! enter 'help' for a guide\n", C_CYAN);
+    printf("\n%swelcome to Taschenrechner! enter 'help' for a guide\n", C_CYAN);
 
     while (1) {
         char input[MAX_INPUT_SIZE];

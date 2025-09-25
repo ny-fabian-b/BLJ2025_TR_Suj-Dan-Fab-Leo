@@ -17,18 +17,24 @@ double evaluateExpression(char* expr, size_t len) {
     size_t expr_len  = 0;
 
     // remove spaces from string
-    for (size_t i = 0; i < len; i++) { // foreach char
-        if (expr[i] == ' ') {
-            for (size_t j = i + 1; j < len; j++) { //foreach char after the space
-                expr[j - 1] = expr[j]; // move char left
-            }
-            len--;
+    size_t w = 0;
+    for (size_t r = 0; r < len; r++) {
+        if (expr[r] != ' ') {
+            expr[w] = expr[r];
+            w++;
         }
     }
+    expr[w] = '\0';
+    len = w;
 
-    expr[len] = '\0';
+
+
+    if (expr[len - 1] != '\0') {
+        expr[len] = '\0';
+    }
 
     parseExpression(&expr_arr, &expr_len, expr, len);
+
 
     return evaluateParsedExpression(&expr_arr, &expr_len);
 }

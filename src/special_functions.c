@@ -3,17 +3,28 @@
 //
 
 #include "../include/special_functions.h"
+
+#include "../include/colors.h"
 #include "../include/life_calculator.h"
 
 SFFunc sffuncs[N_SF_FUNCS] = {
     {calc_sin, "sin"},
     {calc_cos, "cos"},
-    {calc_factorial, "fact"}
+    {calc_tan, "tan"},
+    {calc_factorial, "fact"},
+    {calc_log, "log"},
+    {calc_log2, "log2"},
+    {calc_log10, "log10"},
+    {calc_ln, "ln"},
+    {calc_exp, "exp"},
+    {calc_sqrt, "sqrt"},
+    {calc_cbrt, "cbrt"},
+    {calc_root, "root"},
 };
 
 SFConstant sfconstants[N_SF_CONSTANTS] = {
-    {3.14159265358, "pi"},
-    {2.71, "e"}
+    {PI, "pi"},
+    {E, "e"}
 };
 
 int evaluateSFConstant(char* sf_string, double* out) {
@@ -65,13 +76,17 @@ void evaluateSpecialFunctions(Expression** expr_arr, size_t expr_len) {
     }
 }
 
+int check_n_args(size_t actual, size_t n) {
+    if (actual != n) {
+        printf("%sinvalid number of arguments %s\n", C_RED, C_RESET);
+        return 1;
+    }
+    return 0;
+}
 
 // special functions
 
-
-double calc_sin(double* args, size_t n_args) {
-    double x = args[0];
-
+double d_sin(double x) {
     // modulo
     while (x > PI) {
         x -= 2 * PI;
@@ -96,6 +111,11 @@ double calc_sin(double* args, size_t n_args) {
     return result;
 }
 
+double calc_sin(double* args, size_t n_args) {
+    if (check_n_args(n_args, 1)) return NAN;
+    return d_sin(args[0]);
+}
+
 size_t z_pow(size_t base, size_t exp) {
     size_t result = 1;
     for (size_t i = 0; i < exp; i++) {
@@ -104,9 +124,7 @@ size_t z_pow(size_t base, size_t exp) {
     return result;
 }
 
-double calc_cos(double* args, size_t n_args) {
-    double x = args[0];
-
+double d_cos(double x) {
     // modulo
     while (x > PI) {
         x -= 2 * PI;
@@ -130,6 +148,19 @@ double calc_cos(double* args, size_t n_args) {
     return result;
 }
 
+double calc_cos(double* args, size_t n_args) {
+    if (check_n_args(n_args, 1)) return NAN;
+    return d_cos(args[0]);
+}
+double d_tan(double x) {
+    return d_sin(x) / d_cos(x);
+}
+
+double calc_tan(double* args, size_t n_args) {
+    if (check_n_args(n_args, 1)) return NAN;
+    return d_tan(args[0]);
+}
+
 size_t factorial(size_t x) {
     size_t result = 1;
 
@@ -141,15 +172,15 @@ size_t factorial(size_t x) {
 }
 
 double calc_factorial(double* args, size_t n_args) {
-    size_t x = (size_t) args[0];
+    if (check_n_args(n_args, 1)) return NAN;
 
-    return (double) factorial(x);
+    return (double) factorial((size_t) args[0]);
 }
 
 double exp(double x) { // !!!! function from chatgpt !!!!
     double term = 1.0;
     double sum  = 1.0;
-    for (int n = 1; n < 100; n++) {
+    for (int n = 1; n < 1000; n++) {
         term *= x / n;
         sum += term;
         if (term < TOLERANCE && term > -TOLERANCE) break;
@@ -164,7 +195,7 @@ double ln(double x) { // !!!! function from chatgpt !!!!
     double y2 = y * y;
     double term = y;
     double sum  = 0.0;
-    for (int n = 0; n < 100; n++) {
+    for (int n = 0; n < 1000; n++) {
         sum += term / (2*n + 1);
         term *= y2;
         if (term < TOLERANCE && term > -TOLERANCE) break;
@@ -172,9 +203,76 @@ double ln(double x) { // !!!! function from chatgpt !!!!
     return 2 * sum;
 }
 
-double r_pow(double base, double exponent) {
-    return exp(base * ln(exponent));
+double d_pow(double base, double exponent) {
+    return exp(exponent * ln(base));
 }
 
-double log(double exponent, double base) {
+double d_abs(double x) {
+    if (x < 0) return -x;
+    return x;
+}
+
+double log(double value, double base) {
+    return ln(value) / ln(base);
+}
+double calc_ln(double* args, size_t n_args) {
+    if (check_n_args(n_args, 1)) return NAN;
+    return ln(args[0]);
+}
+
+double calc_exp(double* args, size_t n_args) {
+    if (check_n_args(n_args, 1)) return NAN;
+    return exp(args[0]);
+}
+
+double calc_log2(double* args, size_t n_args) {
+    if (check_n_args(n_args, 1)) return NAN;
+    return log(args[0], 2.0);
+}
+
+double calc_log10(double* args, size_t n_args) {
+    if (check_n_args(n_args, 1)) return NAN;
+    return log(args[0], 10.0);
+}
+
+double calc_sqrt(double* args, size_t n_args) {
+    if (check_n_args(n_args, 1)) return NAN;
+    return d_pow(args[0], 0.5);
+}
+
+double calc_cbrt(double* args, size_t n_args) {
+    if (check_n_args(n_args, 1)) return NAN;
+    return d_pow(args[0], 1.0/3.0);
+}
+
+double calc_root(double* args, size_t n_args) {
+    if (check_n_args(n_args, 2)) return NAN;
+    return d_pow(args[0], 1.0 / args[1]);
+}
+
+double calc_log(double* args, size_t n_args) {
+    if (check_n_args(n_args, 2)) return NAN;
+    double base = args[1];
+    double value = args[0];
+
+    return log(value, base);
+}
+
+double d_mod(double x, double y) {
+    if (y == 0) {
+        return 0.0 / 0.0; // nan;
+    }
+
+    size_t a = (size_t) (x / y);
+
+    return x - (double) a * y;
+}
+
+double calc_pow(double* args, size_t n_args) {
+    if (check_n_args(n_args, 2)) return NAN;
+    return d_pow(args[0], args[1]);
+}
+double calc_mod(double* args, size_t n_args) {
+    if (check_n_args(n_args, 2)) return NAN;
+    return d_mod(args[0], args[1]);
 }

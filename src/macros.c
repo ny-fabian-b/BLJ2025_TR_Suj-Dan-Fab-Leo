@@ -4,10 +4,13 @@
 
 #include "../include/macros.h"
 
+#include <stdio.h>
 #include <string.h>
 
+#include "../include/colors.h"
 #include "../include/life_calculator.h"
 #include "../include/rps_game.h"
+
 
 
 int executeMacros(const char* input) {
@@ -31,6 +34,22 @@ int executeMacros(const char* input) {
 
     if (strcmp(input, "rps\n") == 0) {
         rpsGame();
+        return 1;
+    }
+
+    if (strcmp(input, "help\n") == 0) {
+        // read
+        FILE* fptr;
+        fptr = fopen("../help.txt", "r");
+
+        printf("%s", C_CYAN);
+
+        char line[256];
+        while (fgets(line, 256, fptr)) {
+            printf("%s", line);
+        }
+
+        fclose(fptr);
         return 1;
     }
     return 0;

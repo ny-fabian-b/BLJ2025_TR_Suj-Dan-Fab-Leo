@@ -38,8 +38,10 @@ double evaluate_operator_at(size_t i, Expression** expression) {
             return n1 * n2;
         case '/':
             return n1 / n2;
+        case '%':
+            return d_mod(n1, n2);
         case '^':
-            return r_pow(n1, n2);
+            return d_pow(n1, n2);
     }
 }
 
@@ -79,9 +81,14 @@ void evaluate_simple_functions(Expression**expression, size_t* len) {
     while (1) {
         size_t mult = find_operator('*',expression,*len, 0);
         size_t div = find_operator('/',expression,*len, 0);
+        size_t mod = find_operator('%',expression,*len, 0);
+
         i = mult;
-        if (mult > div) {
+        if (i > div) {
             i = div;
+        }
+        if (i > mod) {
+            i = mod;
         }
 
         if (i == SIZE_MAX) {

@@ -7,7 +7,7 @@
 #define TASCHENRECHNER_CONFIG_H
 
 #define MAX_INPUT_SIZE 200
-#define TOLERANCE 1e-15
+#define TOLERANCE 1e-20
 #define OPERATORS "+-/*^%"
 
 #endif //TASCHENRECHNER_CONFIG_H

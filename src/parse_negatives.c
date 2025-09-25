@@ -54,5 +54,5 @@ void parseNegatives(Expression** expr_arr, size_t* len) {
         p_expr = *expr;
     }
 
-    printExpressionArr(*expr_arr, (*len));
+    printExpressionArr(*expr_arr, *len);
 };

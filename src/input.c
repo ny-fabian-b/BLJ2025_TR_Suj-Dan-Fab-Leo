@@ -10,9 +10,12 @@
 
 void getInput(char* s) {
     fflush(stdin);
-    printf("%sEnter expression to evaluate: \n", C_GREEN);
+    printf("%sEnter expression to evaluate: \n>", C_GREEN);
     printf("%s", C_BRIGHT_WHITE);
     fgets(s, MAX_INPUT_SIZE, stdin);
 }
 
 #include "../include/input.h"
+
+// 1+56 ->
+// 1|+|56
