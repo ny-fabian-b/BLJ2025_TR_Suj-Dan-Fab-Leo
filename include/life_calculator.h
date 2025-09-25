@@ -9,6 +9,7 @@
 int BodymassIndexCalculator();
 int AlcPromilleCalculator();
 int SleepCalculator();
+int CaloriesCalculator();
 
 
 #endif //TASCHENRECHNER_BODY_MASS_INDEX_CALCULATOR_H
