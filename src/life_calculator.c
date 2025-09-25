@@ -70,7 +70,7 @@ int AlcPromilleCalculator() {  //rechnet aus wie viel prozent Alkohol man im Blu
     return 0;
 }
 
-int SleepCalculator(){//Rechnet aus wann man schlafen sollte wenn man zu einer spezifischen zeit aufstehen möchte und auch wie lange man schlafen will
+int SleepCalculator(){  //Rechnet aus wann man schlafen sollte wenn man zu einer spezifischen zeit aufstehen möchte und auch wie lange man schlafen will
     int wakeHour;
     int wakeMinute;
     int sleepHour;
@@ -78,13 +78,22 @@ int SleepCalculator(){//Rechnet aus wann man schlafen sollte wenn man zu einer s
     int bedMinute;
 
     printf("Enter The Hour you wish to wake up (0-23): ");
-    scanf("%d", &wakeHour);
+    if (scanf("%d", &wakeHour)!=1 || wakeHour<0 || wakeHour>23) {
+        printf("Invalid Input");
+        return 1;
+    }
 
     printf("Enter The Minute you wish to wake up (0-59): ");
-    scanf("%d", &wakeMinute);
+    if (scanf(" %d", &wakeMinute)!=1 || wakeMinute<0 || wakeMinute>59) {
+        printf("Invalid Input");
+        return 1;
+    }
 
-    printf("How many hours do you wish to sleep?");
-    scanf("%d", &sleepHour);
+    printf("How many hours do you wish to sleep?(1-24");
+    if (scanf("%d", &sleepHour)!=1 || sleepHour<1|| sleepHour>24) {
+        printf("Invalid Input");
+        return 1;
+    }
 
     bedHour = wakeHour - sleepHour;
     bedMinute = wakeMinute;
