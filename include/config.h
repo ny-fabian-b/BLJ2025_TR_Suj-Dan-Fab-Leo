@@ -7,6 +7,6 @@
 #define TASCHENRECHNER_CONFIG_H
 
 #define MAX_INPUT_SIZE 200
-#define OPERATORS "+-/*"
+#define OPERATORS "+-/*^%"
 
 #endif //TASCHENRECHNER_CONFIG_H
