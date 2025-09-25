@@ -3,23 +3,28 @@
 
 #include <stdio.h>
 
-int BodyMassIndexCalculator() {
+int BodyMassIndexCalculator(){
     float gewicht;
     float groesse;
-    float bmi;
 
     printf("Please enter your weight in Kg: ");
-    scanf("%f", &gewicht);
+    if (scanf("%f", &gewicht)!=1) {
+        printf("Invalid input");
+        return 1;
+    }
 
-    printf("Please enter your height in meters (0.00): ");
-    scanf("%f", &groesse);
+    printf("Please enter your height in meters (e.g. 1.80): ");
+    if (scanf("%f", &groesse)!=1) {
+        printf("Invalid input");
+        return 1;
+    }
 
     if (groesse <= 0) {
         printf("Height must be greater than 0!\n");
         return 1;
     }
 
-    bmi = gewicht / (groesse * groesse);
+    const float bmi = gewicht / (groesse * groesse);
 
     printf("Your BMI is: %.2f\n", bmi);
 
