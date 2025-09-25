@@ -7,6 +7,8 @@
 #include <string.h>
 
 #include "../include/life_calculator.h"
+#include "../include/rps_game.h"
+
 
 int executeMacros(const char* input) {
     if (strcmp(input, "bmi")) {
@@ -22,10 +24,14 @@ int executeMacros(const char* input) {
         return 1;
 
     }
-    if (strcmp(input, "promilla")) {
+    if (strcmp(input, "promille")) {
         AlcPromilleCalculator();
+        return 1;
+    }
+
+    if (strcmp(input, "rps")) {
+        rpsGame();
         return 1;
     }
     return 0;
 }
-

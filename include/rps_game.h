@@ -5,6 +5,6 @@
 #ifndef TASCHENRECHNER_RPS_GAME_H
 #define TASCHENRECHNER_RPS_GAME_H
 
-void ka2();
+void rpsGame();
 
 #endif //TASCHENRECHNER_RPS_GAME_H
