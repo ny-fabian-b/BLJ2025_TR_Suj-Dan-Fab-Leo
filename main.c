@@ -10,9 +10,10 @@
 #include "include/string.h"
 #include "include/design.h"
 #include "include/functions.h"
+#include "include/rps_game.h"
 
 int main(void) {
-    ka();
+    ka2();
 
     double rr[] = {5};
 

@@ -3,10 +3,9 @@
 #include <string.h>
 #include <time.h>
 
-void ka2(){
-
+void ka2() {
     char input[100];
-    printf("Tippe Rock, Paper oder Scissors.\n");
+    printf("Type rock, paper or scissors\n");
     scanf("%s", input);
 
     srand(time(NULL));
@@ -16,48 +15,48 @@ void ka2(){
 
 
     if (zahl == 1) {
-        printf("Rock\n");
+        printf("rock\n");
     }
-        else if (zahl == 2) {
-            printf("Paper\n");
-        }
-            else if (zahl == 3) {
-                printf("Scissors\n");
-            }
+    else if (zahl == 2) {
+        printf("paper\n");
+    }
+    else if (zahl == 3) {
+        printf("scissors\n");
+    }
 
 
     // Gewinn möglichkeiten
-    if (strcmp(input, "Paper") == 0 && zahl == 1) {
-        printf("du hast gewonnen!\n");
+    if (strcmp(input, "paper") == 0 && zahl == 1) {
+        printf("YOU WON!!!\n");
     }
-    else if (strcmp(input, "Scissors") == 0 && zahl == 2) {
-        printf("du hast gewonnen!\n");
+    else if (strcmp(input, "scissors") == 0 && zahl == 2) {
+        printf("YOU WON!!!\n");
     }
-    else if (strcmp(input, "Rock") == 0 && zahl == 3) {
-        printf("du hast gewonnen!\n");
+    else if (strcmp(input, "rock") == 0 && zahl == 3) {
+        printf("YOU WON!!!\n");
     }
     // unentschieden möglichkeiten
-    else if (strcmp(input, "Paper") == 0 && zahl == 2) {
-        printf("Unentschieden.\n");
+    else if (strcmp(input, "paper") == 0 && zahl == 2) {
+        printf("TIE.\n");
     }
-    else if (strcmp(input, "Scissors") == 0 && zahl == 3) {
-        printf("Unentschieden.\n");
+    else if (strcmp(input, "scissors") == 0 && zahl == 3) {
+        printf("TIE.\n");
     }
-    else if (strcmp(input, "Rock") == 0 && zahl == 1) {
-        printf("Unentschieden.\n");
+    else if (strcmp(input, "rock") == 0 && zahl == 1) {
+        printf("TIE.\n");
     }
 
     // Verlier möglichkeiten
-    else if (strcmp(input, "Paper") == 0 && zahl == 3) {
-        printf("Du hast verloren:(\n");
+    else if (strcmp(input, "paper") == 0 && zahl == 3) {
+        printf("YOU LOST:(\n");
     }
-    else if (strcmp(input, "Scissors") == 0 && zahl == 1) {
-        printf("Du hast verloren:(\n");
+    else if (strcmp(input, "scissors") == 0 && zahl == 1) {
+        printf("YOU LOST:(\n");
     }
-    else if (strcmp(input, "Rock") == 0 && zahl == 2) {
-        printf("Du hast verloren:(\n");
+    else if (strcmp(input, "rock") == 0 && zahl == 2) {
+        printf("YOU LOST:(\n");
     }
     else {
-        printf("Verloren\n");
+        printf("ERROR GAME OVER\n");
     }
 }

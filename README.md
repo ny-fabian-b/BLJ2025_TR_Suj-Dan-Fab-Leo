@@ -4,11 +4,11 @@ sujan, leonat, daniel, fabian
 # IPERKA
 
 ## planung
-sujan: +, design
+sujan: +, design, rps game
 
 leonat: präsi, *, /
 
-daniel: -, dokumentation
+daniel: -, dokumentation, design
 
 fabian: klammern, funktionen
 
