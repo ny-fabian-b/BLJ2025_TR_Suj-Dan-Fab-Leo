@@ -26,6 +26,6 @@ add_executable(taschenrechner main.c
         include/parse_negatives.h
         src/parse_factorial.c
         include/parse_factorial.h
-        src/Life-Calculator.c
+        src/life_calculator.c
         "src/Multiply and divide.c"
-        include/Life-Calculator.h)
+        include/life_calculator.h)

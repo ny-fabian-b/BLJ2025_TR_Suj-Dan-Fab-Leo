@@ -105,7 +105,7 @@ int CaloriesCalculator() {
         return 1;
     }
 
-    printf("Your daily basal metabolic rate(BMR) is: %.2f calories")
+    printf("Your daily basal metabolic rate(BMR) is: %.2f calories", bmr);
 
 
 
