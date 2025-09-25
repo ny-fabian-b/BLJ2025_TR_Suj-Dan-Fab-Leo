@@ -19,9 +19,15 @@ int evaluateSpecialFunc(Expression special_func, double* out);
 
 double calc_sin(double* args, size_t n_args);
 double calc_cos(double* args, size_t n_args);
-size_t calc_pow(size_t base, size_t exp);
-size_t z_factorial(size_t n);
-double factorial(double* args, size_t n_args);
+
+size_t z_pow(size_t base, size_t exp);
+double r_pow(double base, double exp);
+
+double exp(double x);
+double ln(double x);
+
+size_t factorial(size_t n);
+double calc_factorial(double* args, size_t n_args);
 
 typedef struct SFFunc {
     double (*func)(double*, size_t);

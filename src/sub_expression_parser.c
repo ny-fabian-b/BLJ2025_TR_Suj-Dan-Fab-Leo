@@ -344,8 +344,6 @@ void parseExpression(Expression** expressionarr, size_t* size, char* input, size
 
         (*size)++;
     }
-
-    printExpressionArr(*expressionarr, *size);
 }
 
 void printExpressionArr(Expression* arr, size_t size) {

@@ -39,7 +39,7 @@ double evaluate_operator_at(size_t i, Expression** expression) {
         case '/':
             return n1 / n2;
         case '^':
-            return 100.0;
+            return r_pow(n1, n2);
     }
 }
 
@@ -67,7 +67,7 @@ void evaluate_simple_functions(Expression**expression, size_t* len) {
     size_t i = 0;
     //exp
     while (1) {
-        size_t exp = find_operator('^', expression, *len, 0);
+        size_t exp = find_operator('^', expression, *len, 1);
 
         if (exp == SIZE_MAX) break;
 

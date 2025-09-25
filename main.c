@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#include "include/colors.h"
 #include "include/parser.h"
 #include "include/sub_expression_parser.h"
 #include "include/special_functions.h"
@@ -12,19 +13,20 @@
 int main(void) {
     ka();
 
-    printf("welcome to Taschenrechner! enter help for a guide");
+    printf("%swelcome to Taschenrechner! enter 'help' for a guide\n", C_CYAN);
 
     while (1) {
         char input[MAX_INPUT_SIZE];
         getInput(input);
 
         if (executeMacros(input)) {
-            strncpy(input, "hallo", MAX_INPUT_SIZE);
             continue;
         }
 
+        printf("%s", C_GREY);
+
         double r = evaluateExpression(input, strlen(input));
 
-        printf("result: %f\n", r);
+        printf("%s\nresult: %f\n", C_CYAN, r);
     }
 }

@@ -47,10 +47,10 @@ double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
                 Expression* subexpr_arr = malloc(subexpr_len * sizeof(Expression));
                 memcpy(subexpr_arr, &(*expr_arr)[i + 1], subexpr_len * sizeof(Expression));
 
-                printExpressionArr(subexpr_arr, subexpr_len);
+                //printExpressionArr(subexpr_arr, subexpr_len);
 
-                printf("\n");
                 double result = evaluateParsedExpression(&subexpr_arr, &subexpr_len);
+                printf("\n");
                 //double result = 100.0;
 
                 free(subexpr_arr);
