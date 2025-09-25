@@ -11,25 +11,25 @@
 
 
 int executeMacros(const char* input) {
-    if (strcmp(input, "bmi")) {
+    if (strcmp(input, "bmi\n") == 0) {
         BodyMassIndexCalculator();
         return 1;
     }
-    if (strcmp(input, "calories")) {
+    if (strcmp(input, "calories\n") == 0) {
         CaloriesCalculator();
         return 1;
     }
-    if (strcmp(input, "sleep")) {
+    if (strcmp(input, "sleep\n") == 0) {
         SleepCalculator();
         return 1;
 
     }
-    if (strcmp(input, "promille")) {
+    if (strcmp(input, "promille\n") == 0) {
         AlcPromilleCalculator();
         return 1;
     }
 
-    if (strcmp(input, "rps")) {
+    if (strcmp(input, "rps\n") == 0) {
         rpsGame();
         return 1;
     }
