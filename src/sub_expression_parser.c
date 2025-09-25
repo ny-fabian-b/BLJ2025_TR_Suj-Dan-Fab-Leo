@@ -12,6 +12,15 @@
 
 char* operators = nullptr;
 
+size_t strFind(const char* str, const char target) {
+    for (size_t i = 0; i < strlen(str); i++) {
+        if (str[i] == target) {
+            return i;
+        }
+    }
+    return SIZE_MAX;
+}
+
 void initParser() {
     operators = OPERATORS;
 }
@@ -78,28 +87,34 @@ Expression createBracketExpression(BracketType bracket_type) {
 void printExpression(Expression* expr) {
     switch (expr->type) {
         case NUMBER:
-            printf("NUMBER: %f\n", expr->number); break;
+            printf("%.3f", expr->number); break;
         case BRACKET:
-            printf("BRACKET: %d\n", expr->bracketType); break;
+            if (expr->bracketType == OPENING_BRACKET) {
+                printf("(");
+            }
+            else {
+                printf(")");
+            }
+            break;
         case OPERATOR:
-            printf("OPERATOR: %c\n", expr->operator); break;
+            printf("%c", expr->operator); break;
         case SPECIAL_FUNC:
-            printf("SPECIAL_FUNC: %s: ", expr->special_func_string);
             if (expr->special_func_type == SF_FUNC) {
+                printf("%s[", expr->special_func_string);
                 for (size_t i = 0; i < expr->special_func_n_args; i++) {
                     printf("%f, ", expr->special_func_args[i]);
                 }
+                printf("]");
             }
             else {
-                printf("CONSTANT");
+                printf("[%s]", expr->special_func_string);
             }
-            printf("\n");
             break;
 
         case EXPR_NONE:
-            printf("EXPR_NONE\n"); break;
+            printf("NONE"); break;
         default:
-            printf("???????\n");
+            printf("????");
     }
 }
 
@@ -200,13 +215,12 @@ void parseSpecialFunc(size_t* i, char* expression, int* isEnd, ExpressionType* n
     }
     else {
         char next_char = expression[*i];
-        if (!isBracket(next_char)) {
+        if (next_char != '(') {
             sf_out.special_func_type = SF_CONSTANT;
         }
     }
 
     if (sf_out.special_func_type == SF_CONSTANT) {
-        //...
     }
     else {
         // go to end of bracket
@@ -214,7 +228,6 @@ void parseSpecialFunc(size_t* i, char* expression, int* isEnd, ExpressionType* n
         // parse args
         parseArgs(&expression[*i] + 1, bracket_end - *i - 2, &sf_out.special_func_args, &sf_out.special_func_n_args);
 
-        printf("gg %d %d %d", bracket_end, *i, bracket_end - *i);
         *i = bracket_end;
     }
 
@@ -321,8 +334,6 @@ void parseExpression(Expression** expressionarr, size_t* size, char* input, size
 
         //printExpression(&cexpr);
 
-
-        printf("%llu, %d, %d, %dgg\n", i, type, end, nextType);
         type = nextType;
 
         Expression* new_expression = malloc(sizeof(Expression) * (*size + 1));
@@ -340,5 +351,7 @@ void parseExpression(Expression** expressionarr, size_t* size, char* input, size
 void printExpressionArr(Expression* arr, size_t size) {
     for (size_t i = 0; i < size; i++) {
         printExpression(&arr[i]);
+        printf(", ");
     }
+    printf("\n");
 }

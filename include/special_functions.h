@@ -9,23 +9,22 @@
 
 int evaluateSFConstant(char* sf_string, double* out);
 
-int evaluateSFFunc(char* sf_string, double* args, double* out);
+int evaluateSFFunc(char* sf_string, double* args, size_t n_args, double* out);
 
 void evaluateSpecialFunctions(Expression** expr_arr, size_t expr_len);
 
 int evaluateSpecialFunc(Expression special_func, double* out);
 
-#define TOLERANCE 1e-15
 #define PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286
 
-double calcsin(double* args);
-double calccos(double* args);
-size_t calcpow(size_t base, size_t exp);
+double calc_sin(double* args, size_t n_args);
+double calc_cos(double* args, size_t n_args);
+size_t calc_pow(size_t base, size_t exp);
 size_t z_factorial(size_t n);
-double factorial(double* args);
+double factorial(double* args, size_t n_args);
 
 typedef struct SFFunc {
-    double (*func)(double*);
+    double (*func)(double*, size_t);
     char* name;
 } SFFunc;
 

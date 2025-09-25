@@ -3,10 +3,11 @@
 //
 
 #include "../include/special_functions.h"
+#include "../include/life_calculator.h"
 
 SFFunc sffuncs[N_SF_FUNCS] = {
-    {calcsin, "sin"},
-    {calccos, "cos"},
+    {calc_sin, "sin"},
+    {calc_cos, "cos"},
     {factorial, "fact"}
 };
 
@@ -26,11 +27,11 @@ int evaluateSFConstant(char* sf_string, double* out) {
     return 0;
 }
 
-int evaluateSFFunc(char* sf_string, double* args, double* out) {
+int evaluateSFFunc(char* sf_string, double* args, size_t n_args, double* out) {
     for (size_t i = 0; i < N_SF_FUNCS; i++) {
         SFFunc sff = sffuncs[i];
         if (strcmp(sff.name, sf_string) == 0) {
-            *out = sff.func(args);
+            *out = sff.func(args, n_args);
             return 1;
         }
     }
@@ -42,7 +43,11 @@ int evaluateSpecialFunc(Expression special_func, double* out) {
         return evaluateSFConstant(special_func.special_func_string, out);
     }
     if (special_func.special_func_type == SF_FUNC) {
-        return evaluateSFFunc(special_func.special_func_string, special_func.special_func_args, out);
+        return evaluateSFFunc(
+            special_func.special_func_string,
+            special_func.special_func_args,
+            special_func.special_func_n_args,
+            out);
     }
     return 0;
 }
@@ -64,7 +69,7 @@ void evaluateSpecialFunctions(Expression** expr_arr, size_t expr_len) {
 // special functions
 
 
-double calcsin(double* args) {
+double calc_sin(double* args, size_t n_args) {
     double x = args[0];
 
     // modulo
@@ -74,7 +79,6 @@ double calcsin(double* args) {
     while (x < -PI) {
         x += 2 * PI;
     }
-    printf("%f\n", x);
 
     double term = x;
     double result = x;
@@ -92,14 +96,14 @@ double calcsin(double* args) {
     return result;
 }
 
-size_t calcpow(size_t base, size_t exp) {
+size_t calc_pow(size_t base, size_t exp) {
     for (size_t i = 1; i < exp; i++) {
         base *= base;
     }
     return base;
 }
 
-double calccos(double* args) {
+double calc_cos(double* args, size_t n_args) {
     double x = args[0];
 
     // modulo
@@ -135,7 +139,7 @@ size_t z_factorial(size_t x) {
     return result;
 }
 
-double factorial(double* args) {
+double factorial(double* args, size_t n_args) {
     size_t x = (size_t) args[0];
 
     return (double) z_factorial(x);
