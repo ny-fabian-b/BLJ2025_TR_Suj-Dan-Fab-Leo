@@ -115,13 +115,22 @@ int CaloriesCalculator()  {         //Rechnet aus wie viel Kalorien der Körper 
     char gender;
 
     printf("Please enter your weight in kg: ");
-    scanf("%f", &weight);
+    if (scanf("%f", &weight) != 1 || weight < 0) {
+        printf("Invalid input");
+        return 1;
+    }
 
     printf("Please enter your height in centimeters (e.g. 180): ");
-    scanf("%f", &height);
+    if (scanf("%f", &height) != 1 || height < 0) {
+        printf("Invalid input");
+        return 1;
+    }
 
     printf("Please enter your age: ");
-    scanf("%d", &age);
+    if (scanf("%d", &age) != 1 || age < 0) {
+        printf("Invalid input");
+        return 1;
+    }
 
     printf("Please enter your gender: ");
     scanf(" %c", &gender);
