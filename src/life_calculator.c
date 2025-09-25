@@ -3,21 +3,28 @@
 
 #include <stdio.h>
 
-int BodyMassIndexCalculator() {
-    float gewicht, groesse, bmi;
+int BodyMassIndexCalculator(){
+    float gewicht;
+    float groesse;
 
     printf("Please enter your weight in Kg: ");
-    scanf("%f", &gewicht);
+    if (scanf("%f", &gewicht)!=1) {
+        printf("Invalid input");
+        return 1;
+    }
 
-    printf("Please enter your height in meters (0.00): ");
-    scanf("%f", &groesse);
+    printf("Please enter your height in meters (e.g. 1.80): ");
+    if (scanf("%f", &groesse)!=1) {
+        printf("Invalid input");
+        return 1;
+    }
 
     if (groesse <= 0) {
         printf("Height must be greater than 0!\n");
         return 1;
     }
 
-    bmi = gewicht / (groesse * groesse);
+    const float bmi = gewicht / (groesse * groesse);
 
     printf("Your BMI is: %.2f\n", bmi);
 
@@ -25,9 +32,12 @@ int BodyMassIndexCalculator() {
 }
 
 
-int AlcPromilleCalculator() {
+int AlcPromilleCalculator() {  //rechnet aus wie viel prozent Alkohol man im Blut gerade hat
 
-    float alkohol, koerpergewicht, reduktionsfaktor, promille;
+    float alkohol;
+    float koerpergewicht;
+    float reduktionsfaktor;
+    float promille;
     char geschlecht;
 
 
@@ -53,15 +63,17 @@ int AlcPromilleCalculator() {
     return 0;
 }
 
-int SleepCalculator() {
-    int wakeHour, wakeMinute;
+int SleepCalculator(){//Rechnet aus wann man schlafen sollte wenn man zu einer spezifischen zeit aufstehen möchte und auch wie lange man schlafen will
+    int wakeHour;
+    int wakeMinute;
     int sleepHour;
-    int bedHour, bedMinute;
+    int bedHour;
+    int bedMinute;
 
-    printf("Enter your wake up hour (0-23): ");
+    printf("Enter The Hour you wish to wake up (0-23): ");
     scanf("%d", &wakeHour);
 
-    printf("Enter your wake up minute (0-59): ");
+    printf("Enter The Minute you wish to wake up (0-59): ");
     scanf("%d", &wakeMinute);
 
     printf("How many hours do you wish to sleep?");
@@ -79,15 +91,17 @@ int SleepCalculator() {
     return 0;
 }
 
-int CaloriesCalculator() {
-    float weight, height, bmr;
+int CaloriesCalculator()  {         //Rechnet aus wie viel Kalorien der Körper tägich automatisch verliert
+    float weight;
+    float height;
+    float bmr;
     int age;
     char gender;
 
     printf("Please enter your weight in kg: ");
     scanf("%f", &weight);
 
-    printf("Please enter your height in meters (0.00): ");
+    printf("Please enter your height in centimeters (e.g. 180): ");
     scanf("%f", &height);
 
     printf("Please enter your age: ");
@@ -107,9 +121,5 @@ int CaloriesCalculator() {
 
     printf("Your daily basal metabolic rate(BMR) is: %.2f calories", bmr);
 
-
-
-
-
-
+    return 0;
 }
