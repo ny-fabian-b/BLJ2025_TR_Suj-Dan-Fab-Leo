@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "Multiply and divide.h"
+#include "../include/Multiply and divide.h"
 
 
 int Multiply() {

@@ -47,14 +47,6 @@ void parseNegatives(Expression** expr_arr, size_t* len) {
                 i--;
             }
         }
-        /*
-        if (
-            (expr->type == BRACKET || expr->type == SPECIAL_FUNC) &&
-            p_expr_type == OPERATOR && pp_expr_type == OPERATOR){
-                //1+-(8*8) -> 1+-1*(8*8)
-                removeExpression(expr_arr, len, i);
-                insertExpression(expr_arr, len, i, createNumberExpression(1));
-            }*/
 
         pp_expr_type = p_expr_type;
 
