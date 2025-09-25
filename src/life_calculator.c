@@ -37,7 +37,6 @@ int AlcPromilleCalculator() {  //rechnet aus wie viel prozent Alkohol man im Blu
     float alkohol;
     float koerpergewicht;
     float reduktionsfaktor;
-    float promille;
     char geschlecht;
 
 
@@ -57,14 +56,14 @@ int AlcPromilleCalculator() {  //rechnet aus wie viel prozent Alkohol man im Blu
     printf("Please enter your gender: ");
     scanf(" %c", &geschlecht);
     if (geschlecht == 'm'|| geschlecht == 'M') {
-        reduktionsfaktor = 0.7;
+        reduktionsfaktor = 0.7f;
     }else if (geschlecht == 'f'|| geschlecht == 'F') {
-        reduktionsfaktor = 0.6;
+        reduktionsfaktor = 0.6f;
     }else{
         printf("Invalid Input please try again");
         return 1;                                               //Fehlercode
     }
-    promille = alkohol / (koerpergewicht * reduktionsfaktor);
+    const float promille = alkohol / (koerpergewicht * reduktionsfaktor);
     printf("Your blood alcohol concentration is: %.2f\n", promille);
 
     return 0;
@@ -74,8 +73,6 @@ int SleepCalculator(){  //Rechnet aus wann man schlafen sollte wenn man zu einer
     int wakeHour;
     int wakeMinute;
     int sleepHour;
-    int bedHour;
-    int bedMinute;
 
     printf("Enter The Hour you wish to wake up (0-23): ");
     if (scanf("%d", &wakeHour)!=1 || wakeHour<0 || wakeHour>23) {
@@ -95,8 +92,8 @@ int SleepCalculator(){  //Rechnet aus wann man schlafen sollte wenn man zu einer
         return 1;
     }
 
-    bedHour = wakeHour - sleepHour;
-    bedMinute = wakeMinute;
+    int bedHour = wakeHour - sleepHour;
+    const int bedMinute = wakeMinute;
 
     if ( bedHour < 0) {
         bedHour +=24;
@@ -107,21 +104,21 @@ int SleepCalculator(){  //Rechnet aus wann man schlafen sollte wenn man zu einer
     return 0;
 }
 
-int CaloriesCalculator()  {         //Rechnet aus wie viel Kalorien der Körper tägich automatisch verliert
-    float weight;
-    float height;
-    float bmr;
+int CaloriesCalculator() {         //Rechnet aus wie viel Kalorien der Körper tägich automatisch verliert
+    double weight;
+    double height;
+    double bmr;
     int age;
     char gender;
 
     printf("Please enter your weight in kg: ");
-    if (scanf("%f", &weight) != 1 || weight < 0) {
+    if (scanf("%lf", &weight) != 1 || weight < 0) {
         printf("Invalid input");
         return 1;
     }
 
     printf("Please enter your height in centimeters (e.g. 180): ");
-    if (scanf("%f", &height) != 1 || height < 0) {
+    if (scanf("%lf", &height) != 1 || height < 0) {
         printf("Invalid input");
         return 1;
     }
@@ -144,7 +141,7 @@ int CaloriesCalculator()  {         //Rechnet aus wie viel Kalorien der Körper 
         return 1;
     }
 
-    printf("Your daily basal metabolic rate(BMR) is: %.2f calories", bmr);
+    printf("Your daily basal metabolic rate(BMR) is: %.2lf calories", bmr);
 
     return 0;
 }
