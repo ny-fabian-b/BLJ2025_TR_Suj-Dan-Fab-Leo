@@ -9,4 +9,8 @@
 
 void parseNegatives(Expression** expr_arr, size_t* len);
 
+void insertExpression(Expression** expr_arr, size_t* len, size_t i, Expression expr);
+
+void removeExpression(Expression** expr_arr, size_t* len, size_t i);
+
 #endif //TASCHENRECHNER_PARSE_NEGATIVES_H

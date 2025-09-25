@@ -23,4 +23,6 @@ add_executable(taschenrechner main.c
         include/parser.h
         src/rps_game.c
         src/parse_negatives.c
-        include/parse_negatives.h)
+        include/parse_negatives.h
+        src/parse_factorial.c
+        include/parse_factorial.h)

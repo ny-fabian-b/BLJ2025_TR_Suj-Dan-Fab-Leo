@@ -7,15 +7,15 @@
 
 #include "sub_expression_parser.h"
 
-double evaluateSFConstant(char* sf_string);
+int evaluateSFConstant(char* sf_string, double* out);
 
-double evaluateSFFunc(char* sf_string, double* args);
+int evaluateSFFunc(char* sf_string, double* args, double* out);
 
 void evaluateSpecialFunctions(Expression** expr_arr, size_t expr_len);
 
-double evaluateSpecialFunc(Expression special_func);
+int evaluateSpecialFunc(Expression special_func, double* out);
 
-#define TRIG_TOLERANCE 1e-15
+#define TOLERANCE 1e-15
 #define PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286
 
 double calcsin(double* args);

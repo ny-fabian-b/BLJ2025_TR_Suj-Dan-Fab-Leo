@@ -7,14 +7,16 @@
 #include <stdlib.h>
 
 #include "../include/sub_expression_parser.h"
+#include "../include/special_functions.h"
 
 size_t find_operator(char op, Expression**expression, size_t len, int reverse) {
-    if (reverse) {
-        for (size_t i = 0; i < len; i++) {
-            if ((*expression)[i].type == OPERATOR) {
-                if ((*expression)[i].operator == op) {
-                    return i;
-                }
+    for (size_t i = 0; i < len; i++) {
+        size_t j = i;
+        if (reverse) j = len - i - 1;
+
+        if ((*expression)[j].type == OPERATOR) {
+            if ((*expression)[j].operator == op) {
+                return j;
             }
         }
     }
@@ -36,6 +38,8 @@ double evaluate_operator_at(size_t i, Expression** expression) {
             return n1 * n2;
         case '/':
             return n1 / n2;
+        case '^':
+            return 100.0;
     }
 }
 
@@ -65,13 +69,18 @@ void evaluate_simple_functions(Expression**expression, size_t* len) {
     size_t i = 0;
     //exp
     while (1) {
-        size_t exp = find_operator(i, expression, len);
+        size_t exp = find_operator('^', expression, *len, 0);
+
+        if (exp == SIZE_MAX) break;
+
+        double result = evaluate_operator_at(exp, expression);
+        put_result_at(exp, result, len, expression);
     }
 
     //mult, div
     while (1) {
-        size_t mult = find_operator('*',expression,*len);
-        size_t div = find_operator('/',expression,*len);
+        size_t mult = find_operator('*',expression,*len, 0);
+        size_t div = find_operator('/',expression,*len, 0);
         i = mult;
         if (mult > div) {
             i = div;
@@ -88,8 +97,8 @@ void evaluate_simple_functions(Expression**expression, size_t* len) {
     //add, sub
     i = 0;
     while (1) {
-        size_t sub = find_operator('-',expression,*len);
-        size_t add = find_operator('+',expression,*len);
+        size_t sub = find_operator('-',expression,*len, 0);
+        size_t add = find_operator('+',expression,*len, 0);
         i = add;
         if (add > sub) {
             i = sub;
