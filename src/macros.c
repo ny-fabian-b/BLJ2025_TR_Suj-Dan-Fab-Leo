@@ -16,24 +16,32 @@
 int executeMacros(const char* input) {
     if (strcmp(input, "bmi\n") == 0) {
         BodyMassIndexCalculator();
+        printf("\n");
+
         return 1;
     }
     if (strcmp(input, "calories\n") == 0) {
         CaloriesCalculator();
+        printf("\n");
+
         return 1;
     }
     if (strcmp(input, "sleep\n") == 0) {
         SleepCalculator();
+        printf("\n");
+
         return 1;
 
     }
     if (strcmp(input, "promille\n") == 0) {
         AlcPromilleCalculator();
+        printf("\n");
         return 1;
     }
 
     if (strcmp(input, "rps\n") == 0) {
         rpsGame();
+        printf("\n");
         return 1;
     }
 
