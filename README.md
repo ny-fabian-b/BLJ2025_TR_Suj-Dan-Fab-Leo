@@ -4,10 +4,7 @@ sujan, leonat, daniel, fabian
 # IPERKA
 
 ## Informiren
-
-wir haben uns durch das dokument auf teams informiert
-und die vorgaben angeschaut und dan passend uns informiert. Wir haben qullen wie google und W3Schools genutzt.
-
+Wir haben uns durch das Dokument auf Teams informiert und die Vorgaben angeschaut. Danach haben wir uns passend weiter informiert. Dabei haben wir Quellen wie Google und W3Schools genutzt.
 ## planung
 sujan: +, design, rps game
 
