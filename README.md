@@ -3,6 +3,11 @@ sujan, leonat, daniel, fabian
 
 # IPERKA
 
+## Informiren
+
+wir haben uns durch das dokument auf teams informiert
+und die vorgaben angeschaut und dan passend uns informiert. Wir haben qullen wie google und W3Schools genutzt.
+
 ## planung
 sujan: +, design, rps game
 
