@@ -19,5 +19,4 @@
 //                printf("Ungueltige Eingabe! Bitte Zahl zwischen 0 und 5 eingeben.\n")
 //    }
 
-    return 0;
-}
+ 
