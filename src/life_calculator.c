@@ -141,7 +141,7 @@ int CaloriesCalculator() {         //Rechnet aus wie viel Kalorien der Körper t
         return 1;
     }
 
-    printf("Your daily basal metabolic rate(BMR) is: %.2lf calories", bmr);
+    printf("Your daily basal metabolic rate(BMR) is: %.2lf calories\n", bmr);
 
     return 0;
 }
