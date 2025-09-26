@@ -7,13 +7,10 @@ sujan, leonat, daniel, fabian
 Wir haben uns durch das Dokument auf Teams informiert und die Vorgaben angeschaut. Danach haben wir uns passend weiter informiert. Dabei haben wir Quellen wie Google und W3Schools genutzt.
 
 ## planung
-sujan: design, rps game
-
-leonat: präsesntation, life calculator
-
-daniel: dokumentation, design
-
-fabian: klammern, funktionen, parser
+- sujan: design, rps game
+- leonat: präsesntation, life calculator
+- daniel: dokumentation, design
+- fabian: klammern, funktionen, parser
 
 ## Entscheiden
 Wir haben uns über die verschiedenen funktionen des Taschenrechners entschieden. Wir haben enstchieden, dass wir Algebra und einige extras einbauen wollen.
@@ -35,13 +32,13 @@ Alles funktioniert
 # funktionen
 
 ### operations:
-factorial (!)
-exponentiation (^)
-multiplication (*)
-division (/)
-modulo (%)
-addition (+)
-subtraction (-)
+- factorial (!)
+- exponentiation (^)
+- multiplication (*)
+- division (/)
+- modulo (%)
+- addition (+)
+- subtraction (-)
 
 ### order of operations:
 1. brackets
