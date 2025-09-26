@@ -28,4 +28,5 @@ add_executable(taschenrechner main.c
         src/macros.c
         include/macros.h
         src/Bewertung.c
-        src/Bewertung.h)
+        include/Bewertung.h
+        src/EE.c)
