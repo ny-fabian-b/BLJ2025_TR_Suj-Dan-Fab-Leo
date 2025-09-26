@@ -2,10 +2,10 @@
 // Created by fabia on 25.09.2025.
 //
 
-#include "../include/parse_factorial.h"
+#include "../include/evaluate_factorial.h"
 
 #include "../include/special_functions.h"
-#include "../include/parse_negatives.h"
+#include "../include/evaluate_negatives.h"
 
 void evaluateFactorials(Expression** expr_arr, size_t* len) {
     ExpressionType p_expr_type = EXPR_NONE;

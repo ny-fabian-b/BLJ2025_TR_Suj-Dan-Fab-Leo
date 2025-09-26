@@ -71,7 +71,7 @@ void put_result_at(size_t i, double result, size_t* len, Expression** expression
 }
 
 
-void evaluate_simple_functions(Expression**expression, size_t* len) {
+void evaluateSimpleFunctions(Expression**expression, size_t* len) {
     size_t i = 0;
     //exp
     while (1) {

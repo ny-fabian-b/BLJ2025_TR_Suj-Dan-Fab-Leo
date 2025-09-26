@@ -19,10 +19,10 @@ add_executable(taschenrechner main.c
         src/parser.c
         include/parser.h
         src/rps_game.c
-        src/parse_negatives.c
-        include/parse_negatives.h
-        src/parse_factorial.c
-        include/parse_factorial.h
+        src/evaluate_negatives.c
+        include/evaluate_negatives.h
+        src/evaluate_factorial.c
+        include/evaluate_factorial.h
         src/life_calculator.c
         include/life_calculator.h
         src/macros.c

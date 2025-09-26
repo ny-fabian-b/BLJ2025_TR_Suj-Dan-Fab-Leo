@@ -7,7 +7,7 @@
 
 #include "sub_expression_parser.h"
 
-void parseNegatives(Expression** expr_arr, size_t* len);
+void evaluateNegatives(Expression** expr_arr, size_t* len);
 
 void insertExpression(Expression** expr_arr, size_t* len, size_t i, Expression expr);
 

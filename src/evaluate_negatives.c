@@ -2,7 +2,7 @@
 // Created by fabia on 24.09.2025.
 //
 
-#include "../include/parse_negatives.h"
+#include "../include/evaluate_negatives.h"
 
 #include <stdlib.h>
 
@@ -33,7 +33,7 @@ void removeExpression(Expression** expr_arr, size_t* len, size_t i) {
     (*len)--;
 }
 
-void parseNegatives(Expression** expr_arr, size_t* len) {
+void evaluateNegatives(Expression** expr_arr, size_t* len) {
     ExpressionType p_expr_type = EXPR_NONE;
     ExpressionType pp_expr_type = EXPR_NONE;
     Expression p_expr;

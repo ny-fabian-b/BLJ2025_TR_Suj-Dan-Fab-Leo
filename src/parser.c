@@ -8,10 +8,10 @@
 
 #include "../include/bracket_parser.h"
 #include "../include/colors.h"
-#include "../include/parse_factorial.h"
+#include "../include/evaluate_factorial.h"
 #include "../include/simple_functions.h"
 #include "../include/special_functions.h"
-#include "../include/parse_negatives.h"
+#include "../include/evaluate_negatives.h"
 
 double evaluateExpression(char* expr, size_t len) {
     Expression* expr_arr = NULL;
@@ -41,6 +41,8 @@ double evaluateExpression(char* expr, size_t len) {
 }
 
 double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
+
+    // evaluate brackets recursively
     for (size_t i = 0; i < *expr_len; i++) {
         Expression expr = (*expr_arr)[i];
 
@@ -87,8 +89,8 @@ double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
     }
     evaluateSpecialFunctions(expr_arr, *expr_len);
     evaluateFactorials(expr_arr, expr_len);
-    parseNegatives(expr_arr, expr_len);
-    evaluate_simple_functions(expr_arr, expr_len);
+    evaluateNegatives(expr_arr, expr_len);
+    evaluateSimpleFunctions(expr_arr, expr_len);
 
     if (*expr_len != 1 || (*expr_arr)[0].type != NUMBER) {
         printf("%sfailed to evaluate expression\n %s", C_RED, C_RESET);

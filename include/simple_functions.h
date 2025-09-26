@@ -7,7 +7,7 @@
 
 #include "sub_expression_parser.h"
 
-void evaluate_simple_functions(Expression**expression, size_t* len);
+void evaluateSimpleFunctions(Expression**expression, size_t* len);
 void put_result_at(size_t size, double result, size_t * len, Expression ** expression);
 
 
