@@ -90,7 +90,7 @@ double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
     parseNegatives(expr_arr, expr_len);
     evaluate_simple_functions(expr_arr, expr_len);
 
-    if (*expr_len != 1) {
+    if (*expr_len != 1 || (*expr_arr)[0].type != NUMBER) {
         printf("%sfailed to evaluate expression\n %s", C_RED, C_RESET);
         return NAN;
     }

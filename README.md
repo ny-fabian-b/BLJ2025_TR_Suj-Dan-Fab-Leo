@@ -3,30 +3,24 @@ sujan, leonat, daniel, fabian
 
 # IPERKA
 
-## Informiren
+## Informieren
 Wir haben uns durch das Dokument auf Teams informiert und die Vorgaben angeschaut. Danach haben wir uns passend weiter informiert. Dabei haben wir Quellen wie Google und W3Schools genutzt.
+
 ## planung
-sujan: +, design, rps game
+sujan: design, rps game
 
-leonat: präsi, *, /
+leonat: präsesntation, life calculator
 
-daniel: -, dokumentation, design
+daniel: dokumentation, design
 
-fabian: klammern, funktionen
+fabian: klammern, funktionen, parser
+
+## Entscheiden
+Wir haben uns über die verschiedenen funktionen des Taschenrechners entschieden. Wir haben enstchieden, dass wir Algebra und einige extras einbauen wollen.
 
 
-## funktionsweise
+## Realisieren
+Alle mitglieder sind nach plan gegangen, kein zeitdruck.
+Wir waren schnell fertig also haben wir extras eingebaut.
 
-### expression
-Bei unserem rechner wird eine Rechnung als ein array von Expressions (=Ausdrücke) dargestellt.
-Jeder ausdruck ist ein bestimmter teil einer rechnung. 
-
-Zum beispiel bei der rechnung 77+100 hat es 3 expressions: 77; +; 100;
-
-Dabei gibt es verschiedene arten von Expressions. Es gibt zahlen, operatoren (+, -, etc), klammern und
-spezielle funktionen (wie fact() oder sin())
-
-### sub expression parser
-der Subexpression parser teilt eine Rechnung in ihre (sub-)Expressions auf.
-
-###
+## Kontrollieren
