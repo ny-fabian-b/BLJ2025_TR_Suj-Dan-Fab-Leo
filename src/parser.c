@@ -48,6 +48,11 @@ double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
             if (expr.bracketType == OPENING_BRACKET) {
                 size_t closing_pos = find_closing_bracket_expr(*expr_arr, *expr_len, i);
 
+                if (closing_pos == SIZE_MAX) {
+                    printf("%sNo Closing Bracket%s", C_RED, C_RESET);
+                    return NAN;
+                }
+
                 // extract subexpression array
                 size_t subexpr_len = closing_pos - i - 2;
                 size_t starting_subexpr_len = subexpr_len;

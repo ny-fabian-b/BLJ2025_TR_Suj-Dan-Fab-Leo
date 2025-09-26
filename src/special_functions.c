@@ -239,33 +239,43 @@ double calc_sqrt(double* args, size_t n_args) {
     if (check_n_args(n_args, 1)) return NAN;
     double result = args[0];
 
-    double factor = 1.0;
-    // factor * factor = result
-    double diff = d_abs(factor * factor - result);
-    double k = result / 2.0;
-    while (diff > SQRT_TOLERANCE) {
-        double g1b = factor + k;
-        double g2b = factor - k;
-
-        double g1d = d_abs(g1b * g1b - result);
-        double g2d = d_abs(g2b * g2b - result);
-
-        if (g1d < diff) {
-            factor = g1b;
-            diff = g1d;
+    // approximate
+    double x = 1.0;
+    if (result > 1.0) {
+        while (x*x < result) {
+            x *= 1.05;
         }
-        else if (g2d < diff) {
-            factor = g2b;
-            diff = g2d;
+    }
+    else {
+        while (x*x < result) {
+            x /= 1.05;
         }
-        else {
-            k /= 1.05;
-        }
-
-
     }
 
-    return d_abs(factor);
+    double k = x * 0.1;
+    double d = d_abs(x * x - result);
+
+    while (d > SQRT_TOLERANCE) {
+        double g1 = x + k;
+        double g2 = x - k;
+
+        double g1d = d_abs(g1 * g1 - result);
+        double g2d = d_abs(g2 * g2 - result);
+
+        if (g1d < d) {
+            x = g1;
+            d = g1d;
+        }
+        else if (g2d < d) {
+            x = g2;
+            d = g2d;
+        }
+        else {
+            k /= 1.3;
+        }
+    }
+
+    return x;
 }
 
 double calc_cbrt(double* args, size_t n_args) {

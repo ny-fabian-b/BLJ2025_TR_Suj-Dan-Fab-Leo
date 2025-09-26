@@ -25,7 +25,7 @@ size_t find_operator(char op, Expression**expression, size_t len, int reverse) {
     return SIZE_MAX;
 }
 
-double evaluate_operator_at(size_t i, Expression** expression) {
+double evaluate_operator_at(size_t i, Expression** expression, size_t len) {
     char op = (*expression)[i].operator;
 
     if ((*expression)[i - 1].type != NUMBER || (*expression)[i + 1].type != NUMBER) {
@@ -79,7 +79,9 @@ void evaluate_simple_functions(Expression**expression, size_t* len) {
 
         if (exp == SIZE_MAX) break;
 
-        double result = evaluate_operator_at(exp, expression);
+        if (exp < 1 || i > *len - 2) return;
+
+        double result = evaluate_operator_at(exp, expression, *len);
         put_result_at(exp, result, len, expression);
     }
 
@@ -101,7 +103,9 @@ void evaluate_simple_functions(Expression**expression, size_t* len) {
             break;
         }
 
-        double result = evaluate_operator_at(i, expression);
+        if (i < 1 || i > *len - 2) return;
+
+        double result = evaluate_operator_at(i, expression, *len);
         put_result_at(i, result, len, expression);
     }
 
@@ -119,7 +123,9 @@ void evaluate_simple_functions(Expression**expression, size_t* len) {
             break;
         }
 
-        double result = evaluate_operator_at(i, expression);
+        if (i < 1 || i > *len - 2) return;
+
+        double result = evaluate_operator_at(i, expression, *len);
         put_result_at(i, result, len, expression);
     }
 
