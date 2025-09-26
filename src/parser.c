@@ -7,6 +7,7 @@
 #include <stdlib.h>
 
 #include "../include/bracket_parser.h"
+#include "../include/colors.h"
 #include "../include/parse_factorial.h"
 #include "../include/simple_functions.h"
 #include "../include/special_functions.h"
@@ -83,6 +84,11 @@ double evaluateParsedExpression(Expression** expr_arr, size_t* expr_len) {
     evaluateFactorials(expr_arr, expr_len);
     parseNegatives(expr_arr, expr_len);
     evaluate_simple_functions(expr_arr, expr_len);
+
+    if (*expr_len != 1) {
+        printf("%sfailed to evaluate expression\n %s", C_RED, C_RESET);
+        return NAN;
+    }
 
     return (*expr_arr)[0].number;
 }

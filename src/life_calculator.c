@@ -14,7 +14,7 @@ int BodyMassIndexCalculator(){
     }
 
     printf("Please enter your height in meters (e.g. 1.80): ");
-    if (scanf("%f", &groesse)!=1) {
+    if (scanf("%f", &groesse)!=1) { //prüft ob zahl gültig ist
         printf("Invalid input");
         return 1;
     }
@@ -81,12 +81,12 @@ int SleepCalculator(){  //Rechnet aus wann man schlafen sollte wenn man zu einer
     }
 
     printf("Enter The Minute you wish to wake up (0-59): ");
-    if (scanf(" %d", &wakeMinute)!=1 || wakeMinute<0 || wakeMinute>59) {
+    if (scanf(" %d", &wakeMinute)!=1 || wakeMinute<0 || wakeMinute>59) { //prüft ob zahl im gültigen bereich leigt
         printf("Invalid Input");
         return 1;
     }
 
-    printf("How many hours do you wish to sleep?(1-24");
+    printf("How many hours do you wish to sleep?(1-24)");
     if (scanf("%d", &sleepHour)!=1 || sleepHour<1|| sleepHour>24) {
         printf("Invalid Input");
         return 1;

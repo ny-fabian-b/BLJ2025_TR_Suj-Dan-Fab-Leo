@@ -189,7 +189,7 @@ double exp(double x) { // !!!! function from chatgpt !!!!
 }
 
 double ln(double x) { // !!!! function from chatgpt !!!!
-    if (x <= 0) return 0.0/0.0; //nan
+    if (x <= 0) return NAN; //nan
 
     double y = (x - 1) / (x + 1);
     double y2 = y * y;
@@ -237,7 +237,35 @@ double calc_log10(double* args, size_t n_args) {
 
 double calc_sqrt(double* args, size_t n_args) {
     if (check_n_args(n_args, 1)) return NAN;
-    return d_pow(args[0], 0.5);
+    double result = args[0];
+
+    double factor = 1.0;
+    // factor * factor = result
+    double diff = d_abs(factor * factor - result);
+    double k = result / 2.0;
+    while (diff > SQRT_TOLERANCE) {
+        double g1b = factor + k;
+        double g2b = factor - k;
+
+        double g1d = d_abs(g1b * g1b - result);
+        double g2d = d_abs(g2b * g2b - result);
+
+        if (g1d < diff) {
+            factor = g1b;
+            diff = g1d;
+        }
+        else if (g2d < diff) {
+            factor = g2b;
+            diff = g2d;
+        }
+        else {
+            k /= 1.05;
+        }
+
+
+    }
+
+    return d_abs(factor);
 }
 
 double calc_cbrt(double* args, size_t n_args) {
@@ -260,7 +288,7 @@ double calc_log(double* args, size_t n_args) {
 
 double d_mod(double x, double y) {
     if (y == 0) {
-        return 0.0 / 0.0; // nan;
+        return NAN; // nan;
     }
 
     size_t a = (size_t) (x / y);

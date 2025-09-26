@@ -27,6 +27,6 @@ int main(void) {
 
         double r = evaluateExpression(input, strlen(input));
 
-        printf("%s\nresult: %f\n", C_CYAN, r);
+        printf("%s\nresult: %.10f\n\n", C_CYAN, r);
     }
 }
