@@ -26,4 +26,6 @@ add_executable(taschenrechner main.c
         src/life_calculator.c
         include/life_calculator.h
         src/macros.c
-        include/macros.h)
+        include/macros.h
+        src/Bewertung.c
+        src/Bewertung.h)

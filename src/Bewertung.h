@@ -1,0 +1,8 @@
+//
+// Created by daniel on 26.09.2025.
+//
+
+#ifndef TASCHENRECHNER_BEWERTUNG_H
+#define TASCHENRECHNER_BEWERTUNG_H
+
+#endif //TASCHENRECHNER_BEWERTUNG_H
