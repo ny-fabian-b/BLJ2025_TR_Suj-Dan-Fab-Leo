@@ -212,7 +212,7 @@ double d_abs(double x) {
     return x;
 }
 
-double log(double value, double base) {
+double _log(double value, double base) {
     return ln(value) / ln(base);
 }
 double calc_ln(double* args, size_t n_args) {
@@ -227,12 +227,12 @@ double calc_exp(double* args, size_t n_args) {
 
 double calc_log2(double* args, size_t n_args) {
     if (check_n_args(n_args, 1)) return NAN;
-    return log(args[0], 2.0);
+    return _log(args[0], 2.0);
 }
 
 double calc_log10(double* args, size_t n_args) {
     if (check_n_args(n_args, 1)) return NAN;
-    return log(args[0], 10.0);
+    return _log(args[0], 10.0);
 }
 
 double calc_sqrt(double* args, size_t n_args) {
@@ -255,7 +255,9 @@ double calc_sqrt(double* args, size_t n_args) {
     double k = x * 0.1;
     double d = d_abs(x * x - result);
 
-    while (d > SQRT_TOLERANCE) {
+    size_t i = 0;
+
+    while (d > SQRT_TOLERANCE && i < 5000) {
         double g1 = x + k;
         double g2 = x - k;
 
@@ -271,8 +273,13 @@ double calc_sqrt(double* args, size_t n_args) {
             d = g2d;
         }
         else {
-            k /= 1.3;
+            k /= 1.01;
         }
+        i++;
+    }
+
+    if (i >= 5000) {
+        printf("%sSqrt did not converge\n%s",C_RED, C_RESET);
     }
 
     return x;
@@ -293,7 +300,7 @@ double calc_log(double* args, size_t n_args) {
     double base = args[1];
     double value = args[0];
 
-    return log(value, base);
+    return _log(value, base);
 }
 
 double d_mod(double x, double y) {

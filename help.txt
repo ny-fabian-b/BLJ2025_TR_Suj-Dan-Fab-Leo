@@ -24,7 +24,7 @@ special functions:
     fact(x) -> calculates x!
     log(x, y) -> calculates log(x, y)
     log2(x) -> calculates log(x, 2)
-    log20(x) -> calculates log(x, 10)
+    log10(x) -> calculates log(x, 10)
     ln(x) -> calculates ln(x)
     exp(x) -> calculates e^x
     sqrt(x) -> calculates sqrt(x)

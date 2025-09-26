@@ -49,6 +49,8 @@ double evaluate_operator_at(size_t i, Expression** expression, size_t len) {
         case '^':
             return d_pow(n1, n2);
     }
+
+    return NAN;
 }
 
 void put_result_at(size_t i, double result, size_t* len, Expression** expression) {
@@ -58,8 +60,6 @@ void put_result_at(size_t i, double result, size_t* len, Expression** expression
 
     memcpy(new_expression, *expression, (i - 1) * sizeof(Expression));
     memcpy(&new_expression[i], &(*expression)[i + 2], (*len - i) * sizeof(Expression));
-    //1*2*3 -> 2 3 2 3
-    //1*2*3 -< 2*3
 
     free(*expression);
 
@@ -85,7 +85,7 @@ void evaluate_simple_functions(Expression**expression, size_t* len) {
         put_result_at(exp, result, len, expression);
     }
 
-    //mult, div
+    //mult, div, mod
     while (1) {
         size_t mult = find_operator('*',expression,*len, 0);
         size_t div = find_operator('/',expression,*len, 0);

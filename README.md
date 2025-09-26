@@ -24,3 +24,8 @@ Alle mitglieder sind nach plan gegangen, kein zeitdruck.
 Wir waren schnell fertig also haben wir extras eingebaut.
 
 ## Kontrollieren
+Wir haben ein Test protokoll gemacht und ausgeführt. Wir haben auch noch getestet, was passiert wenn man fehlerhafte rechnungen beim Taschenrechner eingibt.
+
+## Auswerten
+Alles funktioniert
+
